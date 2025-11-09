@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
+import LocalTime from './components/LocalTime'
 import Link from 'next/link'
 
 export default function Home() {
@@ -10,17 +11,17 @@ export default function Home() {
         <section id="hero" className="h-[600px] flex items-center justify-center bg-terminal-bg">
           <div className="text-center max-w-4xl mx-auto px-6">
             <div className="mb-6">
-              <div className="text-terminal-gray text-sm mb-2">Last login: {new Date().toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })} on ttys000</div>
+              <LocalTime />
               <div className="text-xl mb-4">josh@joshdoes.it:~$ whoami</div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-white">Josh</span> <span className="text-terminal-green">Jones</span>
             </h1>
             <div className="text-xl md:text-2xl mb-8 text-terminal-gray">
-              <span className="text-terminal-green">&gt;</span> Compliance Engineering & Security Automation Specialist
+              GRC Engineering & Security Automation Specialist
             </div>
             <div className="text-terminal-gray mb-8">
-              <div>Operationalizing SOC 2, PCI, and HITRUST programs through code,</div>
+              <div>Operationalizing GRC programs through code,</div>
               <div>integrations, and workflow automation across enterprise environments.</div>
             </div>
             <div className="flex justify-center space-x-4">
@@ -47,8 +48,8 @@ export default function Home() {
                 <div className="bg-terminal-bg border border-terminal-border p-6">
                   <div className="text-terminal-green mb-4">// Professional Summary</div>
                   <p className="text-terminal-gray leading-relaxed">
-                    Compliance engineering and security automation specialist with deep experience operationalizing 
-                    SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation. Skilled at 
+                    GRC engineering and security automation specialist with deep experience operationalizing 
+                    GRC programs through code, integrations, and workflow automation. Skilled at 
                     turning compliance frameworks into scalable controls, building audit-ready systems, and bridging 
                     regulatory and engineering worlds in fast-paced environments. Experienced across IT and security 
                     domains including security architecture, security governance, security risk management, system 
