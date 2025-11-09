@@ -3,8 +3,34 @@ import './globals.css'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Josh Jones - Security Compliance Engineer',
-  description: 'Portfolio website for Josh Jones, Security Compliance Engineer',
+  title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
+  description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist. Operationalizing SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation.',
+  openGraph: {
+    title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
+    description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist. Operationalizing SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation.',
+    url: 'https://joshdoes.it',
+    siteName: 'Josh Jones Portfolio',
+    images: [
+      {
+        url: 'https://joshdoes.it/favicon.ico',
+        width: 32,
+        height: 32,
+        alt: 'Josh Jones - Terminal Icon',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
+    description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist.',
+    images: ['https://joshdoes.it/favicon.ico'],
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
