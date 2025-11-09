@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
   description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist. Operationalizing SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation.',
   openGraph: {
-    title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
-    description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist. Operationalizing SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation.',
+    title: 'Josh Jones - CV/Portfolio',
+    description: 'Josh Jones - CV/Portfolio',
     url: 'https://joshdoes.it',
     siteName: 'Josh Jones Portfolio',
     images: [
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary',
-    title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
-    description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist.',
+    card: 'summary_large_image',
+    title: 'Josh Jones - CV/Portfolio',
+    description: 'Josh Jones - CV/Portfolio',
     images: ['https://joshdoes.it/og-image.png'],
   },
   icons: {
