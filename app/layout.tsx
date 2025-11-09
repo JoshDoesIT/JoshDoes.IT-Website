@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
   description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist. Operationalizing SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation.',
   openGraph: {
-    title: 'Josh Jones',
-    description: 'View CV & Portfolio',
+    title: 'Josh Jones - View CV & Portfolio',
+    description: 'https://joshdoes.it',
     url: 'https://joshdoes.it',
     images: [
       {
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Josh Jones',
-    description: 'View CV & Portfolio',
+    title: 'Josh Jones - View CV & Portfolio',
+    description: 'https://joshdoes.it',
     images: ['https://joshdoes.it/og-image.png'],
   },
   appleWebApp: {
@@ -45,8 +45,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="apple-mobile-web-app-title" content="Josh Jones" />
-        <meta property="og:title" content="Josh Jones" />
-        <meta property="og:description" content="View CV & Portfolio" />
+        <meta property="og:title" content="Josh Jones - View CV & Portfolio" />
+        <meta property="og:description" content="https://joshdoes.it" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://joshdoes.it" />
         <meta property="og:image" content="https://joshdoes.it/og-image.png" />
