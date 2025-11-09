@@ -86,7 +86,7 @@ export default function Home() {
                   <div className="space-y-2 text-terminal-gray">
                     <div><span className="text-terminal-green">degree:</span> BS, IT - Information Assurance and Security</div>
                     <div><span className="text-terminal-green">school:</span> Capella University</div>
-                    <div><span className="text-terminal-green">status:</span> Summa Cum Laude (4.0 GPA)</div>
+                    <div><span className="text-terminal-green">status:</span> Graduated Summa Cum Laude (4.0 GPA)</div>
                     <div className="text-xs mt-2">NSA & DHS Designated National Center of Academic Excellence</div>
                   </div>
                 </div>
