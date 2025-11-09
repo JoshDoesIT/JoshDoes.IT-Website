@@ -1,6 +1,7 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LocalTime from './components/LocalTime'
+import TypingAnimation from './components/TypingAnimation'
 import Link from 'next/link'
 
 export default function Home() {
@@ -12,7 +13,9 @@ export default function Home() {
           <div className="text-center max-w-4xl mx-auto px-6">
             <div className="mb-6">
               <LocalTime />
-              <div className="text-xl mb-4">josh@joshdoes.it:~$ whoami</div>
+              <div className="text-xl mb-4">
+                josh@joshdoes.it:~$ <TypingAnimation text="whoami" speed={100} />
+              </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-white">Josh</span> <span className="text-terminal-green">Jones</span>
