@@ -12,10 +12,10 @@ export const metadata: Metadata = {
     siteName: 'Josh Jones Portfolio',
     images: [
       {
-        url: 'https://joshdoes.it/favicon.ico',
-        width: 32,
-        height: 32,
-        alt: 'Josh Jones - Terminal Icon',
+        url: 'https://joshdoes.it/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
       },
     ],
     locale: 'en_US',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
     description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist.',
-    images: ['https://joshdoes.it/favicon.ico'],
+    images: ['https://joshdoes.it/og-image.png'],
   },
   icons: {
     icon: '/favicon.ico',
