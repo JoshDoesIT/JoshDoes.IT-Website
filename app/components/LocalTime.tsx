@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 export default function LocalTime() {
-  const [timeString, setTimeString] = useState('')
+  const [timeString, setTimeString] = useState<string>('')
 
   useEffect(() => {
     const updateTime = () => {
@@ -24,10 +24,10 @@ export default function LocalTime() {
     return () => clearInterval(interval)
   }, [])
 
-  if (!timeString) {
-    return <div className="text-terminal-gray text-sm mb-2">Last login: Loading... on ttys000</div>
-  }
-
-  return <div className="text-terminal-gray text-sm mb-2">Last login: {timeString} on ttys000</div>
+  return (
+    <div className="text-terminal-gray text-sm mb-2">
+      Last login: {timeString || 'Loading...'} on ttys000
+    </div>
+  )
 }
 
