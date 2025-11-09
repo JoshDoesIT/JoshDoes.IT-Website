@@ -6,7 +6,12 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
 async function getBlogPost(slug: string) {
-  const { data, error } = await supabase
+  const client = supabase
+  if (!client) {
+    return null
+  }
+  
+  const { data, error } = await client
     .from('blog_posts')
     .select('*')
     .eq('slug', slug)

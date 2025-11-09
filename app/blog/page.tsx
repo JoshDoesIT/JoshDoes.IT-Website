@@ -6,7 +6,13 @@ import { format } from 'date-fns'
 
 async function getBlogPosts() {
   try {
-    const { data, error } = await supabase
+    const client = supabase
+    if (!client) {
+      console.warn('Supabase client not initialized')
+      return []
+    }
+    
+    const { data, error } = await client
       .from('blog_posts')
       .select('*')
       .eq('published', true)
