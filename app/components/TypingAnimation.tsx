@@ -15,7 +15,7 @@ export default function TypingAnimation({
   text, 
   speed = 100, 
   eraseSpeed = 50,
-  pauseAfterTyping = 2000,
+  pauseAfterTyping = 4000,
   pauseAfterErasing = 500,
   className = '' 
 }: TypingAnimationProps) {
