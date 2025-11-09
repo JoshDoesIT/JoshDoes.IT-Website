@@ -18,7 +18,7 @@ export default function Home() {
               <span className="text-white">Josh</span> <span className="text-terminal-green">Jones</span>
             </h1>
             <div className="text-xl md:text-2xl mb-8 text-terminal-gray">
-              GRC Engineering & Security Automation Specialist
+              <span className="text-terminal-green">&gt;</span> GRC Engineering & Security Automation Specialist
             </div>
             <div className="text-terminal-gray mb-8">
               <div>Operationalizing GRC programs through code,</div>
