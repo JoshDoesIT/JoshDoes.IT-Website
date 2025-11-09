@@ -314,7 +314,7 @@ export default function Home() {
                 </div>
                 <p className="text-terminal-gray mb-4">
                   Implemented a GRC tool (Hyperproof and internally developed M365 stack) and created a common control 
-                  set for the enterprise, supporting 800+ compliance standards.
+                  set for the enterprise.
                 </p>
                 <div className="flex space-x-2">
                   <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Hyperproof</span>
@@ -324,13 +324,13 @@ export default function Home() {
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-white">PCI DSS Industry Guidance</h3>
+                  <h3 className="text-lg font-semibold text-white">PCI DSS Industry Standards and Guidance</h3>
                   <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 448 512">
                     <path d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3v87.8c18.8-10.9 40.7-17.1 64-17.1h96c35.3 0 64-28.7 64-64v-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V160c0 70.7-57.3 128-128 128H176c-35.3 0-64 28.7-64 64v6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V352 153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
                   </svg>
                 </div>
                 <p className="text-terminal-gray mb-4">
-                  Collaborated with PCI SSC's Special Interest Group (SIG) to help develop and produce the industry 
+                  Participated in numerous PCI SSC standard RFCs and collaborated with PCI SSC's Special Interest Group (SIG) to help develop and produce the industry 
                   guidance "PCI DSS Scoping and Segmentation Guidance for Modern Network Architectures".
                 </p>
                 <div className="flex space-x-2">
