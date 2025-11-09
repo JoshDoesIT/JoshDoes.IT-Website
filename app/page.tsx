@@ -218,15 +218,15 @@ export default function Home() {
                   <svg className="w-6 h-6 text-terminal-green mr-3" fill="currentColor" viewBox="0 0 512 512">
                     <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z" />
                   </svg>
-                  <h3 className="text-lg font-semibold text-white">Frameworks</h3>
+                  <h3 className="text-lg font-semibold text-white">Frameworks & Standards</h3>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li>• SOC 1, SOC 2, SOC 3</li>
-                  <li>• PCI DSS</li>
-                  <li>• PCI Secure Software Standard</li>
-                  <li>• HITRUST</li>
-                  <li>• ISO 42001:2023</li>
+                  <li>• PCI DSS, Secure Software Standard, Secure Software Lifecycle, Key Management Operations, Point-to-Point Encryption, PIN</li>
+                  <li>• HITRUST CSF</li>
+                  <li>• ISO 42001</li>
                   <li>• CJIS</li>
+                  <li>• More...</li>
                 </ul>
               </div>
               <div className="bg-terminal-bg border border-terminal-border p-6">
@@ -237,13 +237,12 @@ export default function Home() {
                   <h3 className="text-lg font-semibold text-white">Tools & Technologies</h3>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
-                  <li>• Wiz, ImPAC, Qualys</li>
-                  <li>• ServiceNow, CrowdStrike</li>
-                  <li>• Exabeam, BigID, Snyk</li>
-                  <li>• Power Automate, Copilot Studio</li>
-                  <li>• Python, Bash, PowerShell</li>
-                  <li>• Elastic Stack (SIEM)</li>
-                  <li>• Hyperproof (GRC)</li>
+                  <li>• Wiz, ImPAC, Qualys, Snyk</li>
+                  <li>• ServiceNow, Jira</li>
+                  <li>• Copilot Studio</li>
+                  <li>• Power Automate, Python, Bash, PowerShell</li>
+                  <li>• Elastic Stack, Exabeam, CrowdStrike</li>
+                  <li>• Hyperproof</li>
                 </ul>
               </div>
               <div className="bg-terminal-bg border border-terminal-border p-6">
@@ -254,12 +253,10 @@ export default function Home() {
                   <h3 className="text-lg font-semibold text-white">Cloud Platforms</h3>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
-                  <li>• AWS (multi-cloud environments)</li>
-                  <li>• Azure (Security Center, M365)</li>
+                  <li>• AWS</li>
+                  <li>• Azure</li>
                   <li>• Oracle Cloud Infrastructure (OCI)</li>
                   <li>• Microsoft 365 Security</li>
-                  <li>• Project & Program Management</li>
-                  <li>• IT Governance & Risk Management</li>
                 </ul>
               </div>
             </div>
