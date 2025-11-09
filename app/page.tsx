@@ -24,8 +24,7 @@ export default function Home() {
               <span className="text-terminal-green">&gt;</span> GRC Engineering & Security Automation Specialist
             </div>
             <div className="text-terminal-gray mb-8">
-              <div>Operationalizing GRC programs through code,</div>
-              <div>integrations, and workflow automation across enterprise environments.</div>
+              Operationalizing GRC programs through code, integrations, and workflow automation across enterprise environments.
             </div>
             <div className="flex justify-center space-x-4">
               <a
@@ -104,12 +103,12 @@ export default function Home() {
             </div>
             <div className="space-y-8">
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Compliance Programs Manager, Security and Healthcare</h3>
-                    <div className="text-terminal-green">InComm Payments • Atlanta, GA</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Compliance Programs Manager, Security and Healthcare</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">06/2024 - Present</div>
                   </div>
-                  <div className="text-terminal-gray">06/2024 - Present</div>
+                  <div className="text-terminal-green">InComm Payments • Atlanta, GA</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Built the enterprise Compliance Engineering function, automating continuous monitoring across Azure, M365, AWS, OCI, and on-premises environments</li>
@@ -120,12 +119,12 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Security & Healthcare Compliance Analyst IV, Lead</h3>
-                    <div className="text-terminal-green">InComm Payments • Atlanta, GA</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Security & Healthcare Compliance Analyst IV, Lead</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">01/2022 - 06/2024</div>
                   </div>
-                  <div className="text-terminal-gray">01/2022 - 06/2024</div>
+                  <div className="text-terminal-green">InComm Payments • Atlanta, GA</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Served as the primary internal PCI subject matter expert covering four level one PCI DSS ROCs and one PCI Secure Software Standard product</li>
@@ -136,12 +135,12 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Senior Security Analyst</h3>
-                    <div className="text-terminal-green">Information & Infrastructure Technologies, Inc. • Herndon, VA</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Senior Security Analyst</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">06/2021 - 12/2021</div>
                   </div>
-                  <div className="text-terminal-gray">06/2021 - 12/2021</div>
+                  <div className="text-terminal-green">Information & Infrastructure Technologies, Inc. • Herndon, VA</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Worked with numerous high-profile clients to improve security readiness and compliance with PCI DSS</li>
@@ -150,12 +149,12 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Information Security Analyst</h3>
-                    <div className="text-terminal-green">Information & Infrastructure Technologies, Inc. • Herndon, VA</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Information Security Analyst</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">01/2021 - 06/2021</div>
                   </div>
-                  <div className="text-terminal-gray">01/2021 - 06/2021</div>
+                  <div className="text-terminal-green">Information & Infrastructure Technologies, Inc. • Herndon, VA</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Worked under the PCI QSA and assisted with PCI assessments</li>
@@ -163,12 +162,12 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Systems Analyst</h3>
-                    <div className="text-terminal-green">City of Kingsport • Kingsport, TN</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Systems Analyst</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">10/2019 - 01/2021</div>
                   </div>
-                  <div className="text-terminal-gray">10/2019 - 01/2021</div>
+                  <div className="text-terminal-green">City of Kingsport • Kingsport, TN</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Administered numerous systems including ERP, ITAM, POS, E-Mail, Document/Records Management, M365, Public Safety, and more</li>
@@ -179,12 +178,12 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Help Desk Analyst</h3>
-                    <div className="text-terminal-green">City of Kingsport • Kingsport, TN</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Help Desk Analyst</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">03/2019 - 10/2019</div>
                   </div>
-                  <div className="text-terminal-gray">03/2019 - 10/2019</div>
+                  <div className="text-terminal-green">City of Kingsport • Kingsport, TN</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Triaged and routed all IT service requests as the sole Help Desk Analyst</li>
@@ -193,12 +192,12 @@ export default function Home() {
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Founder</h3>
-                    <div className="text-terminal-green">Cell4More.com • Kingsport, TN</div>
+                <div className="mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-1">Founder</h3>
+                    <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">05/2018 - 09/2019</div>
                   </div>
-                  <div className="text-terminal-gray">05/2018 - 09/2019</div>
+                  <div className="text-terminal-green">Cell4More.com • Kingsport, TN</div>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Developed web application front-end and back-end for e-waste recycling business</li>
