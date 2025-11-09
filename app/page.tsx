@@ -137,7 +137,7 @@ export default function Home() {
               <div className="bg-terminal-surface border border-terminal-border p-6">
                 <div className="mb-4">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
-                    <h3 className="text-xl font-semibold text-white mb-1">Senior Security Analyst</h3>
+                    <h3 className="text-xl font-semibold text-white mb-1">Senior PCI Security Analyst</h3>
                     <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">06/2021 - 12/2021</div>
                   </div>
                   <div className="text-terminal-green">Information & Infrastructure Technologies, Inc. • Herndon, VA</div>
@@ -180,7 +180,7 @@ export default function Home() {
               <div className="bg-terminal-surface border border-terminal-border p-6">
                 <div className="mb-4">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
-                    <h3 className="text-xl font-semibold text-white mb-1">Help Desk Analyst</h3>
+                    <h3 className="text-xl font-semibold text-white mb-1">IT Helpdesk Analyst</h3>
                     <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">03/2019 - 10/2019</div>
                   </div>
                   <div className="text-terminal-green">City of Kingsport • Kingsport, TN</div>
@@ -194,7 +194,7 @@ export default function Home() {
               <div className="bg-terminal-surface border border-terminal-border p-6">
                 <div className="mb-4">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
-                    <h3 className="text-xl font-semibold text-white mb-1">Founder</h3>
+                    <h3 className="text-xl font-semibold text-white mb-1">Co-Founder</h3>
                     <div className="text-terminal-gray md:text-right md:ml-4 md:flex-shrink-0">05/2018 - 09/2019</div>
                   </div>
                   <div className="text-terminal-green">Cell4More.com • Kingsport, TN</div>
