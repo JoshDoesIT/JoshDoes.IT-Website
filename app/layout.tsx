@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     title: 'Josh Jones',
     description: 'View CV & Portfolio',
     url: 'https://joshdoes.it',
-    siteName: 'Josh Jones Portfolio',
     images: [
       {
         url: 'https://joshdoes.it/og-image.png',
@@ -46,6 +45,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="apple-mobile-web-app-title" content="Josh Jones" />
+        <meta property="og:title" content="Josh Jones" />
+        <meta property="og:description" content="View CV & Portfolio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://joshdoes.it" />
+        <meta property="og:image" content="https://joshdoes.it/og-image.png" />
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
           crossOrigin="anonymous"
