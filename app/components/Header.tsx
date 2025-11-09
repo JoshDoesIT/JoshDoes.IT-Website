@@ -16,14 +16,13 @@ export default function Header() {
                 <path d="M9.4 86.6C-3.1 74.1-3.1 53.9 9.4 41.4s32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 9.4 86.6zM256 416H544c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
               </svg>
             </i>
-            <span className="text-lg font-semibold">josh@security:~$</span>
+            <span className="text-lg font-semibold">josh@joshdoes.it:~$</span>
           </Link>
           <div className="hidden md:flex items-center space-x-8">
             <Link href="#about" className="hover:text-white transition-colors">./about</Link>
             <Link href="#experience" className="hover:text-white transition-colors">./experience</Link>
             <Link href="#skills" className="hover:text-white transition-colors">./skills</Link>
             <Link href="#projects" className="hover:text-white transition-colors">./projects</Link>
-            <Link href="/blog" className="hover:text-white transition-colors">./blog</Link>
             <Link href="#contact" className="hover:text-white transition-colors">./contact</Link>
           </div>
           <div className="md:hidden">
@@ -43,7 +42,6 @@ export default function Header() {
             <Link href="#experience" className="block hover:text-white transition-colors">./experience</Link>
             <Link href="#skills" className="block hover:text-white transition-colors">./skills</Link>
             <Link href="#projects" className="block hover:text-white transition-colors">./projects</Link>
-            <Link href="/blog" className="block hover:text-white transition-colors">./blog</Link>
             <Link href="#contact" className="block hover:text-white transition-colors">./contact</Link>
           </div>
         )}

@@ -11,7 +11,7 @@ export default function Home() {
           <div className="text-center max-w-4xl mx-auto px-6">
             <div className="mb-6">
               <div className="text-terminal-gray text-sm mb-2">Last login: {new Date().toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })} on ttys000</div>
-              <div className="text-xl mb-4">josh@security:~$ whoami</div>
+              <div className="text-xl mb-4">josh@joshdoes.it:~$ whoami</div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-white">Josh</span> <span className="text-terminal-green">Jones</span>
@@ -32,12 +32,6 @@ export default function Home() {
               >
                 cat resume.pdf
               </a>
-              <Link
-                href="/blog"
-                className="border border-terminal-border px-6 py-3 hover:border-terminal-green transition-all"
-              >
-                ls -la blog/
-              </Link>
             </div>
           </div>
         </section>
@@ -45,7 +39,7 @@ export default function Home() {
         <section id="about" className="py-20 bg-terminal-surface">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="mb-12">
-              <div className="text-terminal-gray mb-2">josh@security:~$ cat about.txt</div>
+              <div className="text-terminal-gray mb-2">josh@joshdoes.it:~$ cat about.txt</div>
               <h2 className="text-3xl font-bold text-white mb-6">About Me</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-12">
@@ -78,7 +72,7 @@ export default function Home() {
                 <div className="bg-terminal-bg border border-terminal-border p-6">
                   <div className="text-terminal-green mb-4">// Contact Info</div>
                   <div className="space-y-2 text-terminal-gray">
-                    <div><span className="text-terminal-green">email:</span> commitsncoffee@gmail.com</div>
+                    <div><span className="text-terminal-green">email:</span> contact@joshdoes.it</div>
                     <div><span className="text-terminal-green">phone:</span> 423-967-9970</div>
                     <div><span className="text-terminal-green">location:</span> Johnson City, TN</div>
                     <div><span className="text-terminal-green">website:</span> joshdoes.it</div>
@@ -101,7 +95,7 @@ export default function Home() {
         <section id="experience" className="py-20 bg-terminal-bg">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="mb-12">
-              <div className="text-terminal-gray mb-2">josh@security:~$ cat experience.log</div>
+              <div className="text-terminal-gray mb-2">josh@joshdoes.it:~$ cat experience.log</div>
               <h2 className="text-3xl font-bold text-white mb-6">Work Experience</h2>
             </div>
             <div className="space-y-8">
@@ -214,7 +208,7 @@ export default function Home() {
         <section id="skills" className="py-20 bg-terminal-surface">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="mb-12">
-              <div className="text-terminal-gray mb-2">josh@security:~$ ls skills/</div>
+              <div className="text-terminal-gray mb-2">josh@joshdoes.it:~$ ls skills/</div>
               <h2 className="text-3xl font-bold text-white mb-6">Technical Skills</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
@@ -274,7 +268,7 @@ export default function Home() {
         <section id="projects" className="py-20 bg-terminal-bg">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="mb-12">
-              <div className="text-terminal-gray mb-2">josh@security:~$ ls projects/</div>
+              <div className="text-terminal-gray mb-2">josh@joshdoes.it:~$ ls projects/</div>
               <h2 className="text-3xl font-bold text-white mb-6">Key Projects</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -354,7 +348,7 @@ export default function Home() {
         <section id="contact" className="py-20 bg-terminal-surface">
           <div className="container mx-auto px-6 max-w-4xl text-center">
             <div className="mb-12">
-              <div className="text-terminal-gray mb-2">josh@security:~$ ./contact.sh</div>
+              <div className="text-terminal-gray mb-2">josh@joshdoes.it:~$ ./contact.sh</div>
               <h2 className="text-3xl font-bold text-white mb-6">Get In Touch</h2>
             </div>
             <div className="bg-terminal-bg border border-terminal-border p-8 max-w-2xl mx-auto">
@@ -363,11 +357,11 @@ export default function Home() {
                 Drop me a message and let's secure the digital world together.
               </p>
               <div className="space-y-4">
-                <a href="mailto:commitsncoffee@gmail.com" className="block bg-terminal-surface border border-terminal-green px-6 py-3 hover:bg-terminal-green hover:text-black transition-all">
+                <a href="mailto:contact@joshdoes.it" className="block bg-terminal-surface border border-terminal-green px-6 py-3 hover:bg-terminal-green hover:text-black transition-all">
                   <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 512 512">
                     <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
                   </svg>
-                  commitsncoffee@gmail.com
+                  contact@joshdoes.it
                 </a>
                 <div className="flex justify-center space-x-4">
                   <a href="https://linkedin.com/in/josh-jones-security" target="_blank" rel="noopener noreferrer" className="text-terminal-gray hover:text-terminal-green transition-colors">
