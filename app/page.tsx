@@ -223,8 +223,8 @@ export default function Home() {
                   <h3 className="text-lg font-semibold text-white">Frameworks & Standards</h3>
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
-                  <li>• SOC 1, SOC 2, SOC 3</li>
                   <li>• PCI DSS, Secure Software Standard, Secure Software Lifecycle, Key Management Operations, Point-to-Point Encryption, PIN</li>
+                  <li>• SOC 1, SOC 2, SOC 3</li>
                   <li>• HITRUST CSF</li>
                   <li>• ISO 42001</li>
                   <li>• CJIS</li>
@@ -257,7 +257,7 @@ export default function Home() {
                 <ul className="space-y-2 text-terminal-gray">
                   <li>• AWS</li>
                   <li>• Azure</li>
-                  <li>• Oracle Cloud Infrastructure (OCI)</li>
+                  <li>• OCI</li>
                   <li>• Microsoft 365 Security</li>
                 </ul>
               </div>
