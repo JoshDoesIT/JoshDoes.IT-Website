@@ -3,8 +3,8 @@ import './globals.css'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
-  description: 'josh@joshdoes.it:~$ whoami\n\nCompliance Engineering & Security Automation Specialist. Operationalizing SOC 2, PCI, and HITRUST programs through code, integrations, and workflow automation.',
+  title: 'Josh Jones - GRC Engineering & Security Automation Specialist',
+  description: 'josh@joshdoes.it:~$ whoami\n\nGRC Engineering & Security Automation Specialist. Operationalizing GRC programs through code, integrations, and workflow automation across enterprise environments.',
   openGraph: {
     title: 'Josh Jones - View CV & Portfolio',
     description: 'https://joshdoes.it',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
         url: 'https://joshdoes.it/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Josh Jones - Compliance Engineering & Security Automation Specialist',
+        alt: 'Josh Jones - GRC Engineering & Security Automation Specialist',
       },
     ],
     locale: 'en_US',
@@ -30,8 +30,13 @@ export const metadata: Metadata = {
     title: 'Josh Jones',
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    apple: [
+      { url: '/favicon.ico', sizes: '180x180', type: 'image/x-icon' },
+    ],
   },
 }
 
@@ -43,7 +48,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
         <meta name="apple-mobile-web-app-title" content="Josh Jones" />
         <meta property="og:title" content="Josh Jones - View CV & Portfolio" />
         <meta property="og:description" content="https://joshdoes.it" />
