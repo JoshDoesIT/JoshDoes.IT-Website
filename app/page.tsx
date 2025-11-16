@@ -117,7 +117,7 @@ export default function Home() {
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Built the enterprise Compliance Engineering function, automating continuous monitoring across Azure, M365, AWS, OCI, and on-premises environments</li>
-                  <li><span className="text-terminal-green">&gt;</span> Reduced audit prep time by 60% for security engineering-owned controls through automated audit evidence collection, saving engineering teams countless hours</li>
+                  <li><span className="text-terminal-green">&gt;</span> Reduced audit prep time for controls through automated audit evidence collection, saving engineering teams countless hours</li>
                   <li><span className="text-terminal-green">&gt;</span> Used Copilot Studio to build a custom AI agent to match customer questionnaire questions to standard Q&A responses</li>
                   <li><span className="text-terminal-green">&gt;</span> Successfully completed over 25 external audits or assessments annually covering PCI DSS, PCI Secure Software Standard, HITRUST, SOC1, SOC2, SOC3, and partner audits</li>
                   <li><span className="text-terminal-green">&gt;</span> Partnered with DevOps, Security, and Infrastructure teams to embed compliance into CI/CD pipelines</li>
@@ -286,7 +286,7 @@ export default function Home() {
                 </div>
                 <p className="text-terminal-gray mb-4">
                   Built enterprise Compliance Engineering function automating continuous monitoring across Azure, M365, 
-                  AWS, OCI, and on-premises environments. Reduced audit prep time by 60% for security engineering-owned controls through automated audit evidence collection.
+                  AWS, OCI, and on-premises environments. Reduced audit prep time for controls through automated audit evidence collection.
                 </p>
                 <div className="flex space-x-2">
                   <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Python</span>
