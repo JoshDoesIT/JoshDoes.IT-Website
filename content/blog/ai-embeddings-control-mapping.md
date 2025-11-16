@@ -230,7 +230,7 @@ Automation should augment, not replace, human expertise. The workflow finds like
 - Understand business context
 - Make judgment calls on what "equivalent" means for their organization
 
-### 4. Wrapping Up
+### 4. Learning In Public Is Important
 By posting this project publicly, I've received feedback that improved it significantly. Plus, others can use it, adapt it, and learn from it.
 
 ## What's Next?
