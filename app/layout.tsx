@@ -65,6 +65,33 @@ export default function RootLayout({
               (function() {
                 // Suppress MutationObserver errors from third-party scripts (Google Sign-In via Disqus)
                 // These errors occur when Google Sign-In scripts try to observe elements that don't exist yet
+                
+                // Wrap MutationObserver.observe to catch errors before they're thrown
+                if (typeof MutationObserver !== 'undefined') {
+                  const OriginalMutationObserver = MutationObserver;
+                  MutationObserver = function(callback) {
+                    const observer = new OriginalMutationObserver(callback);
+                    const originalObserve = observer.observe.bind(observer);
+                    observer.observe = function(target, options) {
+                      try {
+                        if (!(target instanceof Node)) {
+                          return; // Silently fail if target is not a Node
+                        }
+                        return originalObserve(target, options);
+                      } catch (e) {
+                        if (e.message && e.message.includes('must be an instance of Node')) {
+                          return; // Silently suppress this specific error
+                        }
+                        throw e; // Re-throw other errors
+                      }
+                    };
+                    return observer;
+                  };
+                  // Copy static properties if any
+                  Object.setPrototypeOf(MutationObserver, OriginalMutationObserver);
+                  MutationObserver.prototype = OriginalMutationObserver.prototype;
+                }
+                
                 const originalError = console.error;
                 const originalWarn = console.warn;
                 
@@ -72,8 +99,8 @@ export default function RootLayout({
                 console.error = function(...args) {
                   const message = args.join(' ');
                   if (
-                    message.includes('MutationObserver.observe') &&
-                    message.includes('must be an instance of Node')
+                    (message.includes('MutationObserver.observe') && message.includes('must be an instance of Node')) ||
+                    (message.includes('credentials-library.js') && message.includes('MutationObserver'))
                   ) {
                     return; // Suppress this error
                   }
@@ -84,28 +111,29 @@ export default function RootLayout({
                 console.warn = function(...args) {
                   const message = args.join(' ');
                   if (
-                    message.includes('deprecated') &&
-                    message.includes('Google') &&
-                    message.includes('authentication')
+                    (message.includes('deprecated') && message.includes('Google') && message.includes('authentication')) ||
+                    (message.includes('Migration Guide') && message.includes('identity/gsi'))
                   ) {
                     return; // Suppress this warning
                   }
                   originalWarn.apply(console, args);
                 };
                 
-                // Global error handler for uncaught exceptions
-                window.addEventListener('error', function(event) {
+                // Global error handler for uncaught exceptions (capture phase)
+                const errorHandler = function(event) {
                   if (
                     event.message &&
-                    event.message.includes('MutationObserver.observe') &&
-                    event.message.includes('must be an instance of Node')
+                    ((event.message.includes('MutationObserver.observe') && event.message.includes('must be an instance of Node')) ||
+                     (event.filename && event.filename.includes('credentials-library.js')))
                   ) {
                     event.preventDefault();
                     event.stopPropagation();
+                    event.stopImmediatePropagation();
                     return true;
                   }
                   return false;
-                }, true);
+                };
+                window.addEventListener('error', errorHandler, true);
                 
                 // Handle unhandled promise rejections
                 window.addEventListener('unhandledrejection', function(event) {
@@ -119,7 +147,7 @@ export default function RootLayout({
                     return true;
                   }
                   return false;
-                });
+                }, true);
               })();
             `,
           }}
