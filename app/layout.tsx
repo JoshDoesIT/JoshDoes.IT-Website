@@ -61,24 +61,26 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                'use strict';
                 // Suppress harmless errors from third-party scripts (Disqus/Google Sign-In)
                 // These errors don't affect functionality but clutter the console
                 
-                // Wrap MutationObserver to prevent errors when third-party scripts try to observe non-existent elements
-                if (typeof window !== 'undefined' && typeof MutationObserver !== 'undefined') {
-                  const OriginalMutationObserver = window.MutationObserver;
-                  window.MutationObserver = function(callback) {
+                // CRITICAL: Wrap MutationObserver IMMEDIATELY before any scripts load
+                if (typeof MutationObserver !== 'undefined') {
+                  const OriginalMutationObserver = MutationObserver;
+                  MutationObserver = function(callback) {
                     const observer = new OriginalMutationObserver(callback);
                     const originalObserve = observer.observe.bind(observer);
                     observer.observe = function(target, options) {
-                      if (!target || !(target instanceof Node)) {
+                      // Validate target before calling observe
+                      if (!target || typeof target !== 'object' || !(target instanceof Node)) {
                         return; // Silently fail if target is invalid
                       }
                       try {
-                        return originalObserve(target, options);
+                        return originalObserve.call(this, target, options);
                       } catch (e) {
-                        // Suppress MutationObserver errors from third-party scripts
-                        if (e && e.message && e.message.includes('must be an instance of Node')) {
+                        // Suppress all MutationObserver errors from third-party scripts
+                        if (!e || !e.message || e.message.includes('must be an instance of Node') || e.message.includes('MutationObserver')) {
                           return;
                         }
                         throw e;
@@ -86,17 +88,23 @@ export default function RootLayout({
                     };
                     return observer;
                   };
-                  Object.setPrototypeOf(window.MutationObserver, OriginalMutationObserver);
-                  window.MutationObserver.prototype = OriginalMutationObserver.prototype;
+                  // Preserve prototype chain
+                  Object.setPrototypeOf(MutationObserver, OriginalMutationObserver);
+                  MutationObserver.prototype = OriginalMutationObserver.prototype;
                 }
                 
-                // Suppress console errors for MutationObserver issues
+                // Override console.error to filter MutationObserver errors
                 if (typeof console !== 'undefined') {
                   const originalError = console.error;
                   console.error = function(...args) {
                     const message = String(args.join(' '));
-                    if (message.includes('MutationObserver.observe') && message.includes('must be an instance of Node')) {
-                      return; // Suppress this specific error
+                    // Suppress MutationObserver errors (multiple patterns)
+                    if (
+                      message.includes('MutationObserver') ||
+                      (message.includes('observe') && message.includes('instance of Node')) ||
+                      message.includes('credentials-library.js')
+                    ) {
+                      return; // Suppress this error
                     }
                     originalError.apply(console, args);
                   };
@@ -105,11 +113,48 @@ export default function RootLayout({
                   const originalWarn = console.warn;
                   console.warn = function(...args) {
                     const message = String(args.join(' '));
-                    if (message.includes('deprecated') && message.includes('Google') && message.includes('authentication')) {
+                    if (
+                      (message.includes('deprecated') && message.includes('Google') && message.includes('authentication')) ||
+                      (message.includes('Migration Guide') && message.includes('identity/gsi'))
+                    ) {
                       return; // Suppress this warning
                     }
                     originalWarn.apply(console, args);
                   };
+                }
+                
+                // Global error handler to catch uncaught exceptions
+                if (typeof window !== 'undefined') {
+                  window.addEventListener('error', function(event) {
+                    if (
+                      event.message &&
+                      (
+                        event.message.includes('MutationObserver') ||
+                        event.message.includes('must be an instance of Node') ||
+                        (event.filename && event.filename.includes('credentials-library.js'))
+                      )
+                    ) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      event.stopImmediatePropagation();
+                      return true;
+                    }
+                    return false;
+                  }, true);
+                  
+                  // Handle unhandled promise rejections
+                  window.addEventListener('unhandledrejection', function(event) {
+                    if (
+                      event.reason &&
+                      typeof event.reason === 'object' &&
+                      event.reason.message &&
+                      event.reason.message.includes('MutationObserver')
+                    ) {
+                      event.preventDefault();
+                      return true;
+                    }
+                    return false;
+                  }, true);
                 }
               })();
             `,
