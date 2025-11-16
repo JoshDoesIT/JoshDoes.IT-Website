@@ -73,7 +73,7 @@ I wanted something that:
 - Supported file operations natively
 - Was self-hostable
 
-Enter **n8n**: an open-source workflow automation platform. It had everything I needed, plus built-in support for Google's Gemini API (which includes the text-embedding-004 model).
+Enter **n8n**: a workflow automation platform perfect for prototyping. It had everything I needed, plus built-in support for Google's Gemini API (which includes the text-embedding-004 model).
 
 ### Phase 2: Building the Workflow
 
@@ -230,9 +230,8 @@ Automation should augment, not replace, human expertise. The workflow finds like
 - Understand business context
 - Make judgment calls on what "equivalent" means for their organization
 
-### 4. Open Source Matters
-
-By open-sourcing the project, I've received feedback that improved it significantly. Plus, others can use it, adapt it, and learn from it.
+### 4. Wrapping Up
+By posting this project publicly, I've received feedback that improved it significantly. Plus, others can use it, adapt it, and learn from it.
 
 ## What's Next?
 
