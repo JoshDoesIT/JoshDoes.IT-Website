@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Script from 'next/script'
+import fs from 'fs'
+import path from 'path'
 import { getAllPosts, getPostBySlug, type BlogPost } from '../posts'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -22,16 +24,47 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const baseUrl = 'https://www.joshdoes.it'
+  const postUrl = `${baseUrl}/blog/${post.slug}`
+  
+  // Check if blog post has a specific OG image
+  // Blog post images are stored in /public/blog_post_images/{slug}/og-image.png
+  const publicDir = path.join(process.cwd(), 'public')
+  const postImageDir = path.join(publicDir, 'blog_post_images', post.slug)
+  const postOgImagePath = path.join(postImageDir, 'og-image.png')
+  
+  // Use post-specific OG image if it exists, otherwise use default
+  const ogImage = fs.existsSync(postOgImagePath)
+    ? `${baseUrl}/blog_post_images/${post.slug}/og-image.png`
+    : `${baseUrl}/og-image.png`
+
   return {
     title: `${post.title} - Josh Does IT Blog`,
     description: post.description,
     openGraph: {
       title: post.title,
       description: post.description,
+      url: postUrl,
+      siteName: 'Josh Does IT',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      locale: 'en_US',
       type: 'article',
       publishedTime: post.date,
       authors: ['Josh Jones'],
       tags: post.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [ogImage],
     },
   }
 }
