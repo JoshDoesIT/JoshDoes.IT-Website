@@ -263,7 +263,6 @@ export default function Home() {
                   <li>• AWS</li>
                   <li>• Azure</li>
                   <li>• OCI</li>
-                  <li>• Microsoft 365 Security</li>
                 </ul>
               </div>
             </div>
