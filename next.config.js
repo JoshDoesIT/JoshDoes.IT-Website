@@ -51,10 +51,11 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
           },
-          {
-            key: 'Content-Security-Policy',
-            value: `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.disqus.com https://disqus.com https://*.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http://cdn.viglink.com; connect-src 'self' https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://accounts.google.com https://*.googleapis.com; frame-ancestors 'self'; frame-src 'self' https://*.disqus.com https://disqus.com https://*.liadm.com https://accounts.google.com;`
-          }
+          // CSP disabled for testing - uncomment to re-enable
+          // {
+          //   key: 'Content-Security-Policy',
+          //   value: `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.disqus.com https://disqus.com https://*.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http://cdn.viglink.com; connect-src 'self' https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://accounts.google.com https://*.googleapis.com; frame-ancestors 'self'; frame-src 'self' https://*.disqus.com https://disqus.com https://*.liadm.com https://accounts.google.com;`
+          // }
         ],
       },
     ]
