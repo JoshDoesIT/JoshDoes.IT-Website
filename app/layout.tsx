@@ -62,32 +62,48 @@ export default function RootLayout({
                 // These errors don't affect functionality but clutter the console
                 
                 // CRITICAL: Wrap MutationObserver IMMEDIATELY before any scripts load
-                if (typeof MutationObserver !== 'undefined') {
-                  const OriginalMutationObserver = MutationObserver;
-                  MutationObserver = function(callback) {
+                // This must run before any third-party scripts that use MutationObserver
+                (function() {
+                  if (typeof MutationObserver === 'undefined') return;
+                  
+                  const OriginalMutationObserver = window.MutationObserver || MutationObserver;
+                  
+                  // Replace global MutationObserver
+                  window.MutationObserver = function(callback) {
                     const observer = new OriginalMutationObserver(callback);
-                    const originalObserve = observer.observe.bind(observer);
+                    const originalObserve = observer.observe;
+                    
+                    // Wrap observe method
                     observer.observe = function(target, options) {
-                      // Validate target before calling observe
-                      if (!target || typeof target !== 'object' || !(target instanceof Node)) {
-                        return; // Silently fail if target is invalid
+                      // Validate target - return silently if invalid
+                      if (!target || typeof target !== 'object') {
+                        return;
                       }
+                      // Check if target is a Node instance
+                      if (!(target instanceof Node)) {
+                        return; // Silently fail - this prevents the error
+                      }
+                      
                       try {
                         return originalObserve.call(this, target, options);
                       } catch (e) {
-                        // Suppress all MutationObserver errors from third-party scripts
-                        if (!e || !e.message || e.message.includes('must be an instance of Node') || e.message.includes('MutationObserver')) {
-                          return;
-                        }
-                        throw e;
+                        // Suppress all MutationObserver-related errors
+                        return;
                       }
                     };
+                    
                     return observer;
                   };
-                  // Preserve prototype chain
-                  Object.setPrototypeOf(MutationObserver, OriginalMutationObserver);
-                  MutationObserver.prototype = OriginalMutationObserver.prototype;
-                }
+                  
+                  // Preserve prototype and static properties
+                  Object.setPrototypeOf(window.MutationObserver, OriginalMutationObserver);
+                  window.MutationObserver.prototype = OriginalMutationObserver.prototype;
+                  
+                  // Also set on global scope if different
+                  if (typeof MutationObserver !== 'undefined' && MutationObserver !== window.MutationObserver) {
+                    MutationObserver = window.MutationObserver;
+                  }
+                })();
                 
                 // Override console.error to filter MutationObserver errors
                 if (typeof console !== 'undefined') {

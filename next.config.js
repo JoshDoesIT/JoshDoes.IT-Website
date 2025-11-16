@@ -33,6 +33,8 @@ const nextConfig = {
       'https://apis.google.com',
       'https://*.liadm.com',
       'https://launchpad-wrapper.privacymanager.io',
+      'https://launchpad.privacymanager.io',
+      'https://*.privacymanager.io',
     ].join(' ')
     
     // Style sources: Self, inline styles, Google Fonts, Disqus
@@ -71,6 +73,8 @@ const nextConfig = {
       'https://*.googleapis.com',
       'https://apis.google.com',
       'https://launchpad-wrapper.privacymanager.io',
+      'https://launchpad.privacymanager.io',
+      'https://*.privacymanager.io',
     ].join(' ')
     
     // Frame sources: Disqus iframes, Google Sign-In iframes
