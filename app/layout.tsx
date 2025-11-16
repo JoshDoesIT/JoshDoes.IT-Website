@@ -108,7 +108,7 @@ export default function RootLayout({
                   }
                 })();
                 
-                // Override console.error to filter MutationObserver errors
+                // Override console.error to filter harmless third-party errors
                 if (typeof console !== 'undefined') {
                   const originalError = console.error;
                   console.error = function(...args) {
@@ -117,7 +117,10 @@ export default function RootLayout({
                     if (
                       message.includes('MutationObserver') ||
                       (message.includes('observe') && message.includes('instance of Node')) ||
-                      message.includes('credentials-library.js')
+                      message.includes('credentials-library.js') ||
+                      // Suppress Disqus cross-origin frame errors (expected browser security warning)
+                      (message.includes('Blocked a frame') && message.includes('disqus.com')) ||
+                      (message.includes('from accessing a frame') && message.includes('origin'))
                     ) {
                       return; // Suppress this error
                     }
@@ -151,7 +154,11 @@ export default function RootLayout({
                       errorMessage.includes('must be an instance of Node') ||
                       errorMessage.includes('observe') ||
                       errorFilename.includes('credentials-library.js') ||
-                      errorFilename.includes('embed.js')
+                      errorFilename.includes('embed.js') ||
+                      errorFilename.includes('embedv2.js') ||
+                      // Suppress Disqus cross-origin frame errors (expected browser security warning)
+                      (errorMessage.includes('Blocked a frame') && errorMessage.includes('disqus.com')) ||
+                      (errorMessage.includes('from accessing a frame') && errorMessage.includes('origin'))
                     ) {
                       event.preventDefault();
                       event.stopPropagation();
