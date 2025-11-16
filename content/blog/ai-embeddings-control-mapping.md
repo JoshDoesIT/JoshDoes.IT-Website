@@ -1,7 +1,7 @@
 ---
 title: 'Building an AI-Powered Control Mapper: From Concept to Production'
 date: '2025-11-15'
-description: 'How I built an intelligent workflow using AI embeddings to automatically map security controls between compliance frameworks. A deep dive into embeddings, semantic similarity, and the journey from manual mapping to automated intelligence.'
+description: 'How I built an intelligent workflow using AI embeddings to automatically map security controls between compliance frameworks. A deep dive into embeddings, semantic similarity, and the journey from manual to automated mapping.'
 tags: ['AI', 'Machine Learning', 'Compliance', 'Automation']
 icon: 'fa-file-code'
 ---
