@@ -35,6 +35,40 @@ let disqusScriptLoaded = false
 
 export default function DisqusComments({ post }: DisqusCommentsProps) {
   useEffect(() => {
+    // Suppress MutationObserver errors from third-party scripts (Google Sign-In via Disqus)
+    // These errors occur when Google Sign-In scripts try to observe elements that don't exist yet
+    const errorHandler = (event: ErrorEvent) => {
+      // Suppress specific MutationObserver errors from credentials-library.js
+      if (
+        event.message &&
+        event.message.includes('MutationObserver.observe') &&
+        event.message.includes('must be an instance of Node')
+      ) {
+        event.preventDefault()
+        event.stopPropagation()
+        return true // Suppress this error
+      }
+      return false // Let other errors through
+    }
+    
+    // Also suppress console.error calls for these specific errors
+    const originalConsoleError = console.error
+    const consoleErrorHandler = (...args: any[]) => {
+      const errorMessage = args.join(' ')
+      if (
+        errorMessage.includes('MutationObserver.observe') &&
+        errorMessage.includes('must be an instance of Node')
+      ) {
+        return // Suppress this console error
+      }
+      // Log other errors normally
+      originalConsoleError.apply(console, args)
+    }
+    console.error = consoleErrorHandler
+    
+    // Add global error handler for uncaught exceptions
+    window.addEventListener('error', errorHandler, true)
+
     // Get Disqus shortname from environment variable
     // Note: The shortname is NOT secret - it's a public identifier
     const DISQUS_SHORTNAME = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME || 'josh-does-it'
@@ -42,59 +76,89 @@ export default function DisqusComments({ post }: DisqusCommentsProps) {
     // Skip if shortname not configured (only if it's still the placeholder)
     if (!DISQUS_SHORTNAME || DISQUS_SHORTNAME === 'YOUR_DISQUS_SHORTNAME') {
       console.warn('Disqus shortname not configured. Please set NEXT_PUBLIC_DISQUS_SHORTNAME environment variable')
-      return
+      return () => {
+        window.removeEventListener('error', errorHandler, true)
+        console.error = originalConsoleError
+      }
     }
 
-    const pageUrl = typeof window !== 'undefined' ? window.location.href : ''
-    const pageIdentifier = post.slug
-    const pageTitle = post.title
-
-    // Disqus configuration
-    window.disqus_config = function (this: DisqusConfig) {
-      this.page.url = pageUrl
-      this.page.identifier = pageIdentifier
-      this.page.title = pageTitle
-    } as DisqusConfigFunction
-
-    // Load Disqus script if not already loaded
-    if (!disqusScriptLoaded && typeof window !== 'undefined') {
-      // Check if script already exists
-      const existingScript = document.querySelector(`script[src*="disqus.com/embed.js"]`)
-      
-      if (!existingScript) {
-        const script = document.createElement('script')
-        script.src = `https://${DISQUS_SHORTNAME}.disqus.com/embed.js`
-        script.setAttribute('data-timestamp', Date.now().toString())
-        script.async = true
-        script.setAttribute('data-disqus-script', 'true')
-
-        script.onerror = () => {
-          console.error('Failed to load Disqus script')
-          disqusScriptLoaded = false
-        }
-
-        document.head.appendChild(script)
-        disqusScriptLoaded = true
-      } else {
-        // Script exists, reset Disqus
-        if (window.DISQUS) {
-          window.DISQUS.reset({
-            reload: true,
-            config: window.disqus_config,
-          })
-        }
+    // Ensure we're in the browser and the container exists
+    if (typeof window === 'undefined') {
+      return () => {
+        window.removeEventListener('error', errorHandler, true)
+        console.error = originalConsoleError
       }
-    } else if (window.DISQUS) {
-      // Script already loaded, just reset
-      window.DISQUS.reset({
-        reload: true,
-        config: window.disqus_config,
-      })
+    }
+
+    // Wait for the DOM to be ready
+    const initDisqus = () => {
+      const disqusThread = document.getElementById('disqus_thread')
+      if (!disqusThread) {
+        // Retry after a short delay if container doesn't exist yet
+        setTimeout(initDisqus, 100)
+        return
+      }
+
+      const pageUrl = window.location.href
+      const pageIdentifier = post.slug
+      const pageTitle = post.title
+
+      // Disqus configuration
+      window.disqus_config = function (this: DisqusConfig) {
+        this.page.url = pageUrl
+        this.page.identifier = pageIdentifier
+        this.page.title = pageTitle
+      } as DisqusConfigFunction
+
+      // Load Disqus script if not already loaded
+      if (!disqusScriptLoaded) {
+        // Check if script already exists
+        const existingScript = document.querySelector(`script[src*="disqus.com/embed.js"]`)
+        
+        if (!existingScript) {
+          const script = document.createElement('script')
+          script.src = `https://${DISQUS_SHORTNAME}.disqus.com/embed.js`
+          script.setAttribute('data-timestamp', Date.now().toString())
+          script.async = true
+          script.setAttribute('data-disqus-script', 'true')
+
+          script.onerror = () => {
+            console.error('Failed to load Disqus script')
+            disqusScriptLoaded = false
+          }
+
+          document.head.appendChild(script)
+          disqusScriptLoaded = true
+        } else {
+          // Script exists, reset Disqus
+          if (window.DISQUS) {
+            window.DISQUS.reset({
+              reload: true,
+              config: window.disqus_config,
+            })
+          }
+        }
+      } else if (window.DISQUS) {
+        // Script already loaded, just reset
+        window.DISQUS.reset({
+          reload: true,
+          config: window.disqus_config,
+        })
+      }
+    }
+
+    // Initialize Disqus
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDisqus)
+    } else {
+      initDisqus()
     }
 
     // Cleanup function
     return () => {
-      // Cleanup is handled by Disqus itself
+      // Remove error handler and restore console.error
+      window.removeEventListener('error', errorHandler, true)
+      console.error = originalConsoleError
     }
   }, [post.slug, post.title])
 
