@@ -11,12 +11,24 @@ interface DisqusCommentsProps {
   post: BlogPost
 }
 
-declare global {
-  interface Window {
-    DISQUS?: any
-    disqus_config?: () => void
+interface DisqusConfig {
+  page: {
+    url: string
+    identifier: string
+    title: string
   }
 }
+
+declare global {
+  interface Window {
+    DISQUS?: {
+      reset: (options: { reload: boolean; config: DisqusConfigFunction }) => void
+    }
+    disqus_config?: DisqusConfigFunction
+  }
+}
+
+type DisqusConfigFunction = (this: DisqusConfig) => void
 
 // Global flag to prevent multiple script loads
 let disqusScriptLoaded = false
@@ -38,11 +50,11 @@ export default function DisqusComments({ post }: DisqusCommentsProps) {
     const pageTitle = post.title
 
     // Disqus configuration
-    window.disqus_config = function () {
+    window.disqus_config = function (this: DisqusConfig) {
       this.page.url = pageUrl
       this.page.identifier = pageIdentifier
       this.page.title = pageTitle
-    }
+    } as DisqusConfigFunction
 
     // Load Disqus script if not already loaded
     if (!disqusScriptLoaded && typeof window !== 'undefined') {
