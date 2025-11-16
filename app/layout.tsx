@@ -63,35 +63,38 @@ export default function RootLayout({
                 
                 // CRITICAL: Wrap MutationObserver IMMEDIATELY before any scripts load
                 // This must run before any third-party scripts that use MutationObserver
+                // We need to intercept at the prototype level to catch all instances
                 (function() {
                   if (typeof MutationObserver === 'undefined') return;
                   
                   const OriginalMutationObserver = window.MutationObserver || MutationObserver;
                   
-                  // Replace global MutationObserver
+                  // Store original observe method
+                  const OriginalObserve = OriginalMutationObserver.prototype.observe;
+                  
+                  // Override observe on the prototype to catch all instances
+                  OriginalMutationObserver.prototype.observe = function(target, options) {
+                    // Validate target - return silently if invalid
+                    if (!target || typeof target !== 'object') {
+                      return;
+                    }
+                    // Check if target is a Node instance
+                    if (!(target instanceof Node)) {
+                      return; // Silently fail - this prevents the error
+                    }
+                    
+                    try {
+                      return OriginalObserve.call(this, target, options);
+                    } catch (e) {
+                      // Suppress all MutationObserver-related errors
+                      return;
+                    }
+                  };
+                  
+                  // Also replace the constructor to ensure new instances use our wrapper
                   window.MutationObserver = function(callback) {
                     const observer = new OriginalMutationObserver(callback);
-                    const originalObserve = observer.observe;
-                    
-                    // Wrap observe method
-                    observer.observe = function(target, options) {
-                      // Validate target - return silently if invalid
-                      if (!target || typeof target !== 'object') {
-                        return;
-                      }
-                      // Check if target is a Node instance
-                      if (!(target instanceof Node)) {
-                        return; // Silently fail - this prevents the error
-                      }
-                      
-                      try {
-                        return originalObserve.call(this, target, options);
-                      } catch (e) {
-                        // Suppress all MutationObserver-related errors
-                        return;
-                      }
-                    };
-                    
+                    // The prototype override already handles observe, but ensure it's bound
                     return observer;
                   };
                   
@@ -136,37 +139,45 @@ export default function RootLayout({
                 }
                 
                 // Global error handler to catch uncaught exceptions
+                // Must use capture phase and be registered early
                 if (typeof window !== 'undefined') {
+                  // Use capture phase to intercept errors before they propagate
                   window.addEventListener('error', function(event) {
+                    const errorMessage = event.message || '';
+                    const errorFilename = event.filename || '';
+                    
                     if (
-                      event.message &&
-                      (
-                        event.message.includes('MutationObserver') ||
-                        event.message.includes('must be an instance of Node') ||
-                        (event.filename && event.filename.includes('credentials-library.js'))
-                      )
+                      errorMessage.includes('MutationObserver') ||
+                      errorMessage.includes('must be an instance of Node') ||
+                      errorMessage.includes('observe') ||
+                      errorFilename.includes('credentials-library.js') ||
+                      errorFilename.includes('embed.js')
                     ) {
                       event.preventDefault();
                       event.stopPropagation();
                       event.stopImmediatePropagation();
-                      return true;
+                      return true; // Prevent default error handling
+                    }
+                    return false;
+                  }, true); // Use capture phase
+                  
+                  // Handle unhandled promise rejections
+                  window.addEventListener('unhandledrejection', function(event) {
+                    const reason = event.reason;
+                    if (reason) {
+                      const reasonMessage = (typeof reason === 'object' && reason.message) ? reason.message : String(reason);
+                      if (
+                        reasonMessage.includes('MutationObserver') ||
+                        reasonMessage.includes('must be an instance of Node') ||
+                        reasonMessage.includes('observe')
+                      ) {
+                        event.preventDefault();
+                        return true;
+                      }
                     }
                     return false;
                   }, true);
                   
-                  // Handle unhandled promise rejections
-                  window.addEventListener('unhandledrejection', function(event) {
-                    if (
-                      event.reason &&
-                      typeof event.reason === 'object' &&
-                      event.reason.message &&
-                      event.reason.message.includes('MutationObserver')
-                    ) {
-                      event.preventDefault();
-                      return true;
-                    }
-                    return false;
-                  }, true);
                 }
               })();
             `,
