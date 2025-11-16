@@ -10,56 +10,10 @@ const nextConfig = {
     }
     return config
   },
-  async headers() {
-    // In development, Next.js requires 'unsafe-eval' for React Fast Refresh
-    const isDev = process.env.NODE_ENV === 'development'
-    // Allow all gstatic.com subdomains and paths for Google Sign-In scripts
-    // Note: CSP wildcards only match subdomains, so we need to explicitly list www.gstatic.com
-    const scriptSrc = isDev
-      ? "'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://launchpad-wrapper.privacymanager.io https://*.gstatic.com https://www.gstatic.com https://gstatic.com https://accounts.google.com https://*.googleapis.com https://apis.google.com"
-      : "'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://launchpad-wrapper.privacymanager.io https://*.gstatic.com https://www.gstatic.com https://gstatic.com https://accounts.google.com https://*.googleapis.com https://apis.google.com"
-    
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()'
-          },
-          // CSP disabled for testing - uncomment to re-enable
-          // {
-          //   key: 'Content-Security-Policy',
-          //   value: `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.disqus.com https://disqus.com https://*.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http://cdn.viglink.com; connect-src 'self' https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://accounts.google.com https://*.googleapis.com; frame-ancestors 'self'; frame-src 'self' https://*.disqus.com https://disqus.com https://*.liadm.com https://accounts.google.com;`
-          // }
-        ],
-      },
-    ]
-  },
+  // Headers function completely disabled for testing - no CSP or security headers
+  // async headers() {
+  //   return []
+  // },
 }
 
 module.exports = nextConfig
