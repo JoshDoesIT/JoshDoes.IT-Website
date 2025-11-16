@@ -26,15 +26,21 @@ export default function Home() {
             <div className="text-terminal-gray mb-8">
               Operationalizing GRC programs through code, integrations, and workflow automation across enterprise environments.
             </div>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center items-center gap-2 sm:gap-4 flex-wrap">
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-terminal-surface border border-terminal-green px-6 py-3 hover:bg-terminal-green hover:text-black transition-all"
+                className="bg-terminal-surface border border-terminal-green px-3 sm:px-6 py-2 sm:py-3 hover:bg-terminal-green hover:text-black transition-all whitespace-nowrap text-xs sm:text-base"
               >
                 cat resume.pdf
               </a>
+              <Link
+                href="/blog"
+                className="bg-terminal-surface border border-terminal-green px-3 sm:px-6 py-2 sm:py-3 hover:bg-terminal-green hover:text-black transition-all whitespace-nowrap text-xs sm:text-base"
+              >
+                ls -la ./blog
+              </Link>
             </div>
           </div>
         </section>
@@ -50,12 +56,11 @@ export default function Home() {
                 <div className="bg-terminal-bg border border-terminal-border p-6">
                   <div className="text-terminal-green mb-4">// Professional Summary</div>
                   <p className="text-terminal-gray leading-relaxed">
-                    GRC engineering and security automation specialist with deep experience operationalizing 
-                    GRC programs through code, integrations, and workflow automation. Skilled at 
-                    turning compliance frameworks into scalable controls, building audit-ready systems, and bridging 
-                    regulatory and engineering worlds in fast-paced environments. Experienced across IT and security 
-                    domains including security architecture, security governance, security risk management, system 
-                    administration, networking, and application development.
+                    GRC engineering and security operations specialist skilled at turning compliance frameworks into 
+                    scalable controls, building audit-ready systems, and bridging regulatory and engineering worlds 
+                    in fast-paced environments. Experienced across IT and security domains including security 
+                    architecture, security governance, security risk management, system administration, networking, 
+                    and application development.
                   </p>
                 </div>
                 <div className="bg-terminal-bg border border-terminal-border p-6">
@@ -75,10 +80,10 @@ export default function Home() {
                 <div className="bg-terminal-bg border border-terminal-border p-6">
                   <div className="text-terminal-green mb-4">// Contact Info</div>
                   <div className="space-y-2 text-terminal-gray">
-                    <div><span className="text-terminal-green">email:</span> contact@joshdoes.it</div>
-                    <div><span className="text-terminal-green">phone:</span> 423-967-9970</div>
-                    <div><span className="text-terminal-green">location:</span> Johnson City, TN</div>
-                    <div><span className="text-terminal-green">website:</span> joshdoes.it</div>
+                    <div><span className="text-terminal-green">email:</span> <a href="mailto:contact@joshdoes.it" className="text-terminal-gray hover:text-terminal-green transition-colors underline">contact@joshdoes.it</a></div>
+                    <div><span className="text-terminal-green">phone:</span> <a href="tel:+14239679970" className="text-terminal-gray hover:text-terminal-green transition-colors underline">423-967-9970</a></div>
+                    <div><span className="text-terminal-green">location:</span> <a href="https://maps.google.com/?q=Johnson+City+TN" target="_blank" rel="noopener noreferrer" className="text-terminal-gray hover:text-terminal-green transition-colors underline">Johnson City, TN</a></div>
+                    <div><span className="text-terminal-green">website:</span> <a href="https://joshdoes.it" className="text-terminal-gray hover:text-terminal-green transition-colors underline">joshdoes.it</a></div>
                   </div>
                 </div>
                 <div className="bg-terminal-bg border border-terminal-border p-6">
@@ -112,8 +117,8 @@ export default function Home() {
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Built the enterprise Compliance Engineering function, automating continuous monitoring across Azure, M365, AWS, OCI, and on-premises environments</li>
-                  <li><span className="text-terminal-green">&gt;</span> Reduced audit prep time by 60% through automated audit evidence collection, saving engineering teams countless hours</li>
-                  <li><span className="text-terminal-green">&gt;</span> Used Copilot Studio to build a custom AI agent to match customer questionnaire questions to standard Q&A responses, cutting review time by more than 80%</li>
+                  <li><span className="text-terminal-green">&gt;</span> Reduced audit prep time by 60% for security engineering-owned controls through automated audit evidence collection, saving engineering teams countless hours</li>
+                  <li><span className="text-terminal-green">&gt;</span> Used Copilot Studio to build a custom AI agent to match customer questionnaire questions to standard Q&A responses</li>
                   <li><span className="text-terminal-green">&gt;</span> Successfully completed over 25 external audits or assessments annually covering PCI DSS, PCI Secure Software Standard, HITRUST, SOC1, SOC2, SOC3, and partner audits</li>
                   <li><span className="text-terminal-green">&gt;</span> Partnered with DevOps, Security, and Infrastructure teams to embed compliance into CI/CD pipelines</li>
                 </ul>
@@ -281,7 +286,7 @@ export default function Home() {
                 </div>
                 <p className="text-terminal-gray mb-4">
                   Built enterprise Compliance Engineering function automating continuous monitoring across Azure, M365, 
-                  AWS, OCI, and on-premises environments. Reduced audit prep time by 60% through automated audit evidence collection.
+                  AWS, OCI, and on-premises environments. Reduced audit prep time by 60% for security engineering-owned controls through automated audit evidence collection.
                 </p>
                 <div className="flex space-x-2">
                   <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Python</span>

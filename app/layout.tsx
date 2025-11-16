@@ -61,7 +61,6 @@ export default function RootLayout({
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
-          integrity="sha384-63b2d22b0a18f82da2c9fbbfa2ea4d9e418437712003ab24989795839032424eedb5c8d7d17b0b4449a6b895bf49d6d4"
         />
       </head>
       <body className="bg-terminal-bg text-terminal-green font-mono">

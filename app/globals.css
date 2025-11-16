@@ -18,3 +18,239 @@
   51%, 100% { opacity: 0; }
 }
 
+/* Cusdis dark theme overrides to match terminal theme - FORCE WHITE TEXT */
+#cusdis_thread {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* Target all Cusdis elements more broadly - FORCE WHITE */
+#cusdis_thread * {
+  color: #ffffff !important;
+}
+
+#cusdis_thread .cusdis-comment-box,
+#cusdis_thread .cusdis-comment-box-input,
+#cusdis_thread form,
+#cusdis_thread .cusdis-form {
+  background: #1a1a1a !important;
+  border: 1px solid #333333 !important;
+  color: #a0a0a0 !important;
+}
+
+/* Input fields - maximum visibility with white text */
+#cusdis_thread input,
+#cusdis_thread input[type="text"],
+#cusdis_thread input[type="email"],
+#cusdis_thread input[type="url"],
+#cusdis_thread input[type="password"],
+#cusdis_thread textarea {
+  background: #0a0a0a !important;
+  border: 2px solid #666666 !important;
+  color: #ffffff !important;
+  padding: 0.75rem !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1rem !important;
+  border-radius: 4px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 2.5rem !important;
+}
+
+/* Placeholder text - very visible gray */
+#cusdis_thread input::placeholder,
+#cusdis_thread textarea::placeholder {
+  color: #999999 !important;
+  opacity: 1 !important;
+}
+
+/* Focus states - bright green borders with glow */
+#cusdis_thread input:focus,
+#cusdis_thread input[type="text"]:focus,
+#cusdis_thread input[type="email"]:focus,
+#cusdis_thread input[type="url"]:focus,
+#cusdis_thread input[type="password"]:focus,
+#cusdis_thread textarea:focus {
+  border: 2px solid #00ff41 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 255, 65, 0.3) !important;
+  background: #0a0a0a !important;
+  color: #ffffff !important;
+}
+
+/* Buttons */
+#cusdis_thread button,
+#cusdis_thread button[type="submit"],
+#cusdis_thread input[type="submit"] {
+  background: #00ff41 !important;
+  color: #0a0a0a !important;
+  border: 1px solid #00ff41 !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+#cusdis_thread button:hover,
+#cusdis_thread button[type="submit"]:hover,
+#cusdis_thread input[type="submit"]:hover {
+  background: #00cc33 !important;
+  border-color: #00cc33 !important;
+}
+
+/* Comments - WHITE TEXT */
+#cusdis_thread .cusdis-comment,
+#cusdis_thread [class*="comment"] {
+  background: #1a1a1a !important;
+  border-bottom: 1px solid #333333 !important;
+  color: #ffffff !important;
+  padding: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Author and header text */
+#cusdis_thread .cusdis-comment-author,
+#cusdis_thread .cusdis-comment-header,
+#cusdis_thread [class*="author"],
+#cusdis_thread [class*="header"] {
+  color: #00ff41 !important;
+  font-weight: 600 !important;
+}
+
+/* Links */
+#cusdis_thread a {
+  color: #00ff41 !important;
+  text-decoration: none !important;
+}
+
+#cusdis_thread a:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* Comment body text - WHITE */
+#cusdis_thread .cusdis-comment-body,
+#cusdis_thread [class*="body"] {
+  color: #ffffff !important;
+  line-height: 1.6 !important;
+}
+
+/* Timestamps */
+#cusdis_thread .cusdis-comment-time,
+#cusdis_thread [class*="time"] {
+  color: #666666 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Labels - LIGHT GRAY FOR VISIBILITY */
+#cusdis_thread label {
+  color: #cccccc !important;
+  display: block !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: 500 !important;
+}
+
+/* Make sure ALL text is visible - WHITE */
+#cusdis_thread p,
+#cusdis_thread div:not(button):not([class*="button"]),
+#cusdis_thread span:not(button):not([class*="button"]),
+#cusdis_thread li,
+#cusdis_thread td,
+#cusdis_thread th {
+  color: #ffffff !important;
+}
+
+/* Specifically target text nodes and paragraphs */
+#cusdis_thread p *,
+#cusdis_thread div:not(button) *:not(button),
+#cusdis_thread span:not(button) *:not(button) {
+  color: inherit !important;
+}
+
+/* Ensure form elements have good contrast */
+#cusdis_thread .cusdis-comment-box,
+#cusdis_thread .cusdis-comment-box-input,
+#cusdis_thread form,
+#cusdis_thread .cusdis-form {
+  background: #1a1a1a !important;
+  border: 1px solid #333333 !important;
+  color: #ffffff !important;
+}
+
+/* Style the iframe container - if iframe is cross-origin, we can at least style the container */
+#cusdis_thread iframe {
+  border: 2px solid #333333 !important;
+  border-radius: 4px !important;
+  background: #0a0a0a !important;
+  min-height: 400px !important;
+}
+
+/* Make iframe more visible */
+.cusdis-comments-wrapper iframe {
+  width: 100% !important;
+  border: 2px solid #333333 !important;
+  background: #0a0a0a !important;
+}
+
+/* Blog post highlight styling for bold text */
+.highlight {
+  background: rgba(0, 255, 65, 0.1);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+/* Disqus dark theme overrides to match terminal theme */
+#disqus_thread,
+#disqus_thread * {
+  color: #ffffff !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+#disqus_thread input,
+#disqus_thread textarea {
+  background: #0a0a0a !important;
+  border: 2px solid #666666 !important;
+  color: #ffffff !important;
+  padding: 0.75rem !important;
+  font-size: 1rem !important;
+  border-radius: 4px !important;
+}
+
+#disqus_thread input:focus,
+#disqus_thread textarea:focus {
+  border: 2px solid #00ff41 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 255, 65, 0.3) !important;
+}
+
+#disqus_thread button,
+#disqus_thread input[type="submit"] {
+  background: #00ff41 !important;
+  color: #0a0a0a !important;
+  border: 2px solid #00ff41 !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  border-radius: 4px !important;
+}
+
+#disqus_thread button:hover {
+  background: #00cc33 !important;
+}
+
+#disqus_thread .post-content,
+#disqus_thread .post-body {
+  color: #ffffff !important;
+}
+
+#disqus_thread .post-header {
+  color: #00ff41 !important;
+}
+
+#disqus_thread a {
+  color: #00ff41 !important;
+}
+
+#disqus_thread a:hover {
+  color: #ffffff !important;
+}
+

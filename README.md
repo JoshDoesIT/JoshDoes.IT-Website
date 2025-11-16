@@ -1,31 +1,37 @@
-# Terminal Portfolio Website
+# joshdoes.it
 
-A modern, terminal-themed portfolio website template built with Next.js, TypeScript, Tailwind CSS, and Supabase. Perfect for developers, security professionals, or anyone who wants a unique CLI-inspired portfolio.
+My personal portfolio and blog website built with Next.js and TypeScript, featuring a terminal-inspired design.
 
-🌐 **Live Demo**: [joshdoes.it](https://joshdoes.it)
+🌐 **Live Site**: [joshdoes.it](https://joshdoes.it)
 
-## ✨ Features
+## About
 
-- **🖥️ Terminal-themed Design**: Dark theme with green accents, mimicking a command-line interface
-- **📄 Portfolio Sections**: About, Experience, Skills, Projects, and Contact
-- **📱 Responsive Design**: Works seamlessly on desktop and mobile devices
+This is my personal website where I share my experience, projects, and blog posts about GRC engineering, security automation, and compliance.
+
+## Features
+
+- **🖥️ Terminal-themed Design**: Dark theme with green accents inspired by command-line interfaces
+- **📝 Blog**: Markdown-based blog with search and pagination
+- **📄 Portfolio Sections**: About, Experience, Skills, Projects, and Contact information
+- **📱 Responsive Design**: Optimized for desktop and mobile devices
 - **⚡ Fast & Modern**: Built with Next.js 14 App Router for optimal performance
+- **🔒 Security**: Comprehensive security measures including XSS protection, path traversal prevention, and input validation
 
 ## Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
+- **Content**: Markdown files in `content/blog/`
 - **Deployment**: Vercel
 
-## 🚀 Quick Start
+## Local Development
 
 ### Prerequisites
 
 - Node.js 18+ and npm
-- A Vercel account (for deployment)
 
-### Installation
+### Setup
 
 1. **Clone the repository**
    ```bash
@@ -43,71 +49,100 @@ A modern, terminal-themed portfolio website template built with Next.js, TypeScr
    npm run dev
    ```
    
-   Open [http://localhost:3000](http://localhost:3000) to see your site.
+   Open [http://localhost:3000](http://localhost:3000) to view the site locally.
 
-## 📦 Deployment
-
-### Deploy to Vercel
-
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Deploy!
-
-The site will automatically deploy on every push to your main branch.
-
-### Other Platforms
-
-This is a standard Next.js application and can be deployed to any platform that supports Next.js:
-- Netlify
-- Railway
-- AWS Amplify
-- Self-hosted with Docker
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-├── app/
-│   ├── components/     # Reusable components (Header, Footer)
-│   ├── globals.css     # Global styles
-│   ├── layout.tsx      # Root layout
-│   └── page.tsx        # Home page
-└── public/             # Static assets (favicon, etc.)
+├── app/                      # Next.js App Router (routing and React components)
+│   ├── blog/
+│   │   ├── [slug]/          # Dynamic route folder - renders individual blog posts
+│   │   │   └── page.tsx     # Component for /blog/[slug] pages
+│   │   ├── BlogList.tsx     # Component for blog listing with search/pagination
+│   │   ├── page.tsx         # Blog index page (/blog route)
+│   │   └── posts.ts         # Server-side code that reads markdown files
+│   ├── components/          # Reusable React components
+│   ├── privacy/             # Privacy policy page
+│   ├── accessibility/       # Accessibility statement page
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout component
+│   └── page.tsx             # Home page
+├── content/
+│   └── blog/                # Blog post content (Markdown files)
+│       └── *.md             # Individual blog posts as markdown files
+├── public/
+│   └── blog_post_images/    # Static images referenced in blog posts
+│       └── [post-name]/     # Images organized by blog post
+└── types/                   # TypeScript type definitions
 ```
 
-## 🎨 Customization
+### How It Works
 
-### Update Content
+- **`app/blog/`** - Next.js routing and React components that render blog pages
+  - `[slug]/page.tsx` - Creates dynamic routes like `/blog/ai-embeddings-control-mapping`
+  - `page.tsx` - Renders the blog listing page at `/blog`
+  - `posts.ts` - Server-side code that reads markdown files from `content/blog/`
 
-- **Personal Information**: Edit `app/page.tsx` to update your name, title, experience, skills, etc.
-- **Colors**: Modify the terminal color scheme in `tailwind.config.ts`
-- **Styling**: Adjust global styles in `app/globals.css`
-- **Components**: Customize reusable components in `app/components/`
+- **`content/blog/`** - Where you write your blog posts as Markdown files
+  - Each `.md` file becomes a blog post
+  - Frontmatter (title, date, tags, etc.) is parsed from the file header
 
-### Terminal Theme Colors
+- **`public/blog_post_images/`** - Images used in blog posts
+  - Images are organized in folders by blog post name
+  - Referenced in markdown like: `![alt text](/blog_post_images/post-name/image.png)`
 
-The default terminal theme uses:
+## Blog Posts
+
+Blog posts are written in Markdown and stored in `content/blog/`. Each post includes frontmatter with metadata:
+
+```markdown
+---
+title: 'Post Title'
+date: '2025-11-15'
+description: 'Post description'
+tags: ['Tag1', 'Tag2']
+icon: 'fa-file-code'
+---
+
+# Post Content
+
+Your markdown content here...
+```
+
+## Deployment
+
+The site is deployed to Vercel and automatically deploys on every push to the main branch. The deployment process:
+
+1. Code is pushed to the main branch on GitHub
+2. Vercel automatically builds and deploys the site
+3. The site is live at [joshdoes.it](https://joshdoes.it)
+
+## Terminal Theme
+
+The site uses a custom terminal color scheme:
+
 - Background: `#0a0a0a` (terminal-bg)
 - Surface: `#1a1a1a` (terminal-surface)
 - Border: `#333333` (terminal-border)
 - Green: `#00ff41` (terminal-green)
 - Gray: `#a0a0a0` (terminal-gray)
 
-You can customize these in `tailwind.config.ts`.
+Colors can be customized in `tailwind.config.ts`.
 
-## 🤝 Contributing
+## Security
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/JoshDoesIT/JoshDoes.IT-Website/issues).
+The site implements several security measures:
 
-## 📄 License
+- XSS protection in markdown rendering with URL sanitization
+- Path traversal prevention for blog post slugs
+- Input validation and length limits on search functionality
+- HTML entity escaping throughout the application
+- Content Security Policy (CSP) headers configured
+
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
-
-- Inspired by terminal/CLI aesthetics
-- Built with [Next.js](https://nextjs.org/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-
 ---
 
-Made with ❤️ by [Josh Jones](https://joshdoes.it)
+Built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/)

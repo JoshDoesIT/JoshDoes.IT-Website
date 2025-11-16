@@ -19,11 +19,12 @@ export default function Header() {
             <span className="text-lg font-semibold">josh@joshdoes.it:~$</span>
           </Link>
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#about" className="hover:text-white transition-colors">./about</Link>
-            <Link href="#experience" className="hover:text-white transition-colors">./experience</Link>
-            <Link href="#skills" className="hover:text-white transition-colors">./skills</Link>
-            <Link href="#projects" className="hover:text-white transition-colors">./projects</Link>
-            <Link href="#contact" className="hover:text-white transition-colors">./contact</Link>
+            <Link href="/#about" className="hover:text-white transition-colors">./about</Link>
+            <Link href="/#experience" className="hover:text-white transition-colors">./experience</Link>
+            <Link href="/#skills" className="hover:text-white transition-colors">./skills</Link>
+            <Link href="/#projects" className="hover:text-white transition-colors">./projects</Link>
+            <Link href="/#contact" className="hover:text-white transition-colors">./contact</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">./blog</Link>
           </div>
           <div className="md:hidden">
             <button
@@ -38,11 +39,12 @@ export default function Header() {
         </nav>
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 space-y-2">
-            <Link href="#about" className="block hover:text-white transition-colors">./about</Link>
-            <Link href="#experience" className="block hover:text-white transition-colors">./experience</Link>
-            <Link href="#skills" className="block hover:text-white transition-colors">./skills</Link>
-            <Link href="#projects" className="block hover:text-white transition-colors">./projects</Link>
-            <Link href="#contact" className="block hover:text-white transition-colors">./contact</Link>
+            <Link href="/#about" className="block hover:text-white transition-colors">./about</Link>
+            <Link href="/#experience" className="block hover:text-white transition-colors">./experience</Link>
+            <Link href="/#skills" className="block hover:text-white transition-colors">./skills</Link>
+            <Link href="/#projects" className="block hover:text-white transition-colors">./projects</Link>
+            <Link href="/#contact" className="block hover:text-white transition-colors">./contact</Link>
+            <Link href="/blog" className="block hover:text-white transition-colors">./blog</Link>
           </div>
         )}
       </div>
