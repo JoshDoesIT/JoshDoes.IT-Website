@@ -144,6 +144,16 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
   // Enhanced markdown to HTML converter matching terminal theme
   const formatContent = (content: string) => {
+    // Helper function to escape HTML entities - defined once at the top
+    const escapeHtml = (text: string): string => {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+    }
+    
     let html = ''
     let inCodeBlock = false
     let codeBlockContent = ''
@@ -206,37 +216,52 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         inList = false
       }
       
-      // Headers with terminal-style prefix
+      // Headers with terminal-style prefix - SECURITY: Escape header content
       if (line.startsWith('# ')) {
         if (inList) {
           html += '</ul>'
           inList = false
         }
-        html += `<h1 class="text-3xl font-bold text-white mb-4 mt-8"><span class="text-terminal-green"># </span>${line.substring(2)}</h1>`
+        const headerText = escapeHtml(line.substring(2))
+        html += `<h1 class="text-3xl font-bold text-white mb-4 mt-8"><span class="text-terminal-green"># </span>${headerText}</h1>`
       } else if (line.startsWith('## ')) {
         if (inList) {
           html += '</ul>'
           inList = false
         }
-        html += `<h2 class="text-xl font-semibold text-white mb-4 mt-8"><span class="text-terminal-green"># </span>${line.substring(3)}</h2>`
+        const headerText = escapeHtml(line.substring(3))
+        html += `<h2 class="text-xl font-semibold text-white mb-4 mt-8"><span class="text-terminal-green"># </span>${headerText}</h2>`
       } else if (line.startsWith('### ')) {
         if (inList) {
           html += '</ul>'
           inList = false
         }
-        html += `<h3 class="text-lg font-semibold text-white mb-3 mt-6"><span class="text-terminal-green"># </span>${line.substring(4)}</h3>`
+        const headerText = escapeHtml(line.substring(4))
+        html += `<h3 class="text-lg font-semibold text-white mb-3 mt-6"><span class="text-terminal-green"># </span>${headerText}</h3>`
       } else if (line.startsWith('#### ')) {
         if (inList) {
           html += '</ul>'
           inList = false
         }
-        html += `<h4 class="text-base font-semibold text-white mb-2 mt-4"><span class="text-terminal-green"># </span>${line.substring(5)}</h4>`
+        const headerText = escapeHtml(line.substring(5))
+        html += `<h4 class="text-base font-semibold text-white mb-2 mt-4"><span class="text-terminal-green"># </span>${headerText}</h4>`
       } else if (isListItem) {
-        // List items with terminal arrow
+        // List items with terminal arrow - SECURITY: Escape content before processing bold
         const listContent = line.substring(2)
-        // Highlight text in **bold**
-        const highlighted = listContent.replace(/\*\*(.*?)\*\*/g, '<span class="highlight bg-terminal-bg px-1 py-0.5 rounded border border-terminal-border">$1</span>')
-        html += `<li class="text-terminal-gray"><span class="text-terminal-green">→</span> ${highlighted}</li>`
+        // Process bold text: **text** - escape content first
+        const highlighted = listContent.replace(/\*\*(.*?)\*\*/g, (match, content) => {
+          const escaped = escapeHtml(content)
+          return `<span class="highlight bg-terminal-bg px-1 py-0.5 rounded border border-terminal-border">${escaped}</span>`
+        })
+        // Escape any remaining content that wasn't in bold markers
+        const parts = highlighted.split(/(<span[^>]*>.*?<\/span>)/g)
+        const escapedParts = parts.map(part => {
+          if (part.startsWith('<span') && part.endsWith('</span>')) {
+            return part // Already processed bold text
+          }
+          return escapeHtml(part) // Escape remaining text
+        })
+        html += `<li class="text-terminal-gray"><span class="text-terminal-green">→</span> ${escapedParts.join('')}</li>`
       } else if (line.trim() === '') {
         if (inList) {
           html += '</ul>'
@@ -251,8 +276,9 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           html += '</ul>'
           inList = false
         }
-        // Terminal command style
-        html += `<div class="text-terminal-gray mb-6"><span class="text-terminal-green">${line}</span></div>`
+        // Terminal command style - SECURITY: Escape command content
+        const escapedLine = escapeHtml(line)
+        html += `<div class="text-terminal-gray mb-6"><span class="text-terminal-green">${escapedLine}</span></div>`
       } else if (line.trim().match(/^!\[.*?\]\(.*?\)$/)) {
         // Image markdown: ![alt text](/path/to/image.png)
         if (inList) {
@@ -266,22 +292,24 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         }
         const imageMatch = line.trim().match(/^!\[(.*?)\]\((.*?)\)$/)
         if (imageMatch) {
-          // Helper function to escape HTML entities
-          const escapeHtml = (text: string) => {
-            return text
-              .replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;')
-              .replace(/"/g, '&quot;')
-              .replace(/'/g, '&#039;')
-          }
-          
-          // Sanitize alt text and image path
+          // Sanitize alt text and image path - SECURITY: Use outer escapeHtml function
           const rawAltText = imageMatch[1]
           const rawImagePath = imageMatch[2].trim()
           
+          // SECURITY: Block dangerous protocols in image URLs
+          const dangerousProtocols = ['javascript:', 'data:', 'vbscript:', 'file:', 'about:']
+          const hasDangerousProtocol = dangerousProtocols.some(proto => 
+            rawImagePath.toLowerCase().startsWith(proto)
+          )
+          
           // Only allow relative paths starting with / or https:// or http://
-          if (rawImagePath.startsWith('/') || rawImagePath.startsWith('https://') || rawImagePath.startsWith('http://')) {
+          const isSafeImagePath = !hasDangerousProtocol && (
+            rawImagePath.startsWith('/') || 
+            rawImagePath.startsWith('https://') || 
+            rawImagePath.startsWith('http://')
+          )
+          
+          if (isSafeImagePath) {
             const escapedAltText = escapeHtml(rawAltText)
             const escapedImagePath = escapeHtml(rawImagePath)
             html += `<div class="my-8"><img src="${escapedImagePath}" alt="${escapedAltText}" class="w-full rounded border border-terminal-border cursor-pointer hover:opacity-90 transition-opacity blog-image" data-image-src="${escapedImagePath}" data-image-alt="${escapedAltText}" /><p class="text-terminal-gray text-xs italic text-center mt-1 opacity-75"><i class="fa-solid fa-expand mr-1"></i> Click to expand</p>`
@@ -295,15 +323,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           inList = false
         }
         const captionText = line.trim().substring(1, line.trim().length - 1)
-        // Helper function to escape HTML entities
-        const escapeHtml = (text: string) => {
-          return text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;')
-        }
+        // SECURITY: Use outer escapeHtml function
         const escapedCaption = escapeHtml(captionText)
         
         if (imageBlockOpen) {
@@ -326,21 +346,23 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         // Regular paragraphs
         let processedLine = line
         
-        // Helper function to escape HTML entities
-        const escapeHtml = (text: string) => {
-          return text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;')
-        }
-        
         // Process markdown links: [text](url) - with URL sanitization
-        // Do this first before other processing to avoid conflicts
+        // SECURITY: Validate and sanitize URLs to prevent javascript: and data: XSS
         processedLine = processedLine.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
           // Sanitize URL - only allow http://, https://, mailto:, or relative paths starting with /
           const sanitizedUrl = url.trim()
+          
+          // SECURITY: Block dangerous protocols (javascript:, data:, vbscript:, etc.)
+          const dangerousProtocols = ['javascript:', 'data:', 'vbscript:', 'file:', 'about:']
+          const hasDangerousProtocol = dangerousProtocols.some(proto => 
+            sanitizedUrl.toLowerCase().startsWith(proto)
+          )
+          
+          if (hasDangerousProtocol) {
+            // Return escaped plain text if URL uses dangerous protocol
+            return escapeHtml(text)
+          }
+          
           const isSafeUrl = sanitizedUrl.startsWith('http://') || 
                            sanitizedUrl.startsWith('https://') || 
                            sanitizedUrl.startsWith('mailto:') ||
@@ -592,8 +614,20 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 initialized = true;
                 
                 function openModal(src, alt) {
+                  // SECURITY: Validate image source to prevent XSS
+                  // The src should already be validated from the markdown parser,
+                  // but add an extra layer of protection
+                  if (typeof src !== 'string' || src.length === 0) {
+                    return;
+                  }
+                  // Block dangerous protocols
+                  const dangerousProtocols = ['javascript:', 'data:', 'vbscript:', 'file:', 'about:'];
+                  const lowerSrc = src.toLowerCase();
+                  if (dangerousProtocols.some(proto => lowerSrc.startsWith(proto))) {
+                    return;
+                  }
                   modalImage.src = src;
-                  modalImage.alt = alt;
+                  modalImage.alt = typeof alt === 'string' ? alt : '';
                   modal.classList.remove('hidden');
                   modal.classList.add('flex');
                   document.body.style.overflow = 'hidden';
