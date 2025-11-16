@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  webpack: (config, { isServer }) => {
+    // Ignore optional dependencies in gray-matter that we don't use
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      'coffee-script': false,
+      'toml': false,
+    }
+    return config
+  },
   async headers() {
     // In development, Next.js requires 'unsafe-eval' for React Fast Refresh
     const isDev = process.env.NODE_ENV === 'development'
