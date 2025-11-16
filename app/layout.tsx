@@ -58,6 +58,73 @@ export default function RootLayout({
         <meta property="og:url" content="https://joshdoes.it" />
         <meta property="og:image" content="https://joshdoes.it/og-image.png" />
         <Script
+          id="error-suppression"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Suppress MutationObserver errors from third-party scripts (Google Sign-In via Disqus)
+                // These errors occur when Google Sign-In scripts try to observe elements that don't exist yet
+                const originalError = console.error;
+                const originalWarn = console.warn;
+                
+                // Override console.error to filter out specific errors
+                console.error = function(...args) {
+                  const message = args.join(' ');
+                  if (
+                    message.includes('MutationObserver.observe') &&
+                    message.includes('must be an instance of Node')
+                  ) {
+                    return; // Suppress this error
+                  }
+                  originalError.apply(console, args);
+                };
+                
+                // Override console.warn to filter out deprecation warnings from Google
+                console.warn = function(...args) {
+                  const message = args.join(' ');
+                  if (
+                    message.includes('deprecated') &&
+                    message.includes('Google') &&
+                    message.includes('authentication')
+                  ) {
+                    return; // Suppress this warning
+                  }
+                  originalWarn.apply(console, args);
+                };
+                
+                // Global error handler for uncaught exceptions
+                window.addEventListener('error', function(event) {
+                  if (
+                    event.message &&
+                    event.message.includes('MutationObserver.observe') &&
+                    event.message.includes('must be an instance of Node')
+                  ) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return true;
+                  }
+                  return false;
+                }, true);
+                
+                // Handle unhandled promise rejections
+                window.addEventListener('unhandledrejection', function(event) {
+                  if (
+                    event.reason &&
+                    typeof event.reason === 'object' &&
+                    event.reason.message &&
+                    event.reason.message.includes('MutationObserver.observe')
+                  ) {
+                    event.preventDefault();
+                    return true;
+                  }
+                  return false;
+                });
+              })();
+            `,
+          }}
+        />
+        <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"

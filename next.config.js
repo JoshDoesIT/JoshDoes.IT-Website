@@ -13,9 +13,10 @@ const nextConfig = {
   async headers() {
     // In development, Next.js requires 'unsafe-eval' for React Fast Refresh
     const isDev = process.env.NODE_ENV === 'development'
+    // Allow all gstatic.com subdomains and paths for Google Sign-In scripts
     const scriptSrc = isDev
-      ? "'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://launchpad-wrapper.privacymanager.io https://*.gstatic.com https://www.gstatic.com https://accounts.google.com"
-      : "'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://launchpad-wrapper.privacymanager.io https://*.gstatic.com https://www.gstatic.com https://accounts.google.com"
+      ? "'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://launchpad-wrapper.privacymanager.io https://*.gstatic.com https://www.gstatic.com https://gstatic.com https://accounts.google.com https://*.googleapis.com"
+      : "'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://*.disqus.com https://disqus.com https://*.disquscdn.com https://*.liadm.com https://launchpad-wrapper.privacymanager.io https://*.gstatic.com https://www.gstatic.com https://gstatic.com https://accounts.google.com https://*.googleapis.com"
     
     return [
       {
