@@ -254,3 +254,24 @@
   color: #ffffff !important;
 }
 
+/* Code block wrapping for blog posts */
+.code-block-wrapper {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.code-block-pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.code-block-code {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  display: block;
+  max-width: 100%;
+}
+

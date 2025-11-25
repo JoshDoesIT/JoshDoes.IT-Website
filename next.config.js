@@ -87,7 +87,7 @@ const nextConfig = {
     ].join(' ')
     
     // Build the complete CSP directive
-    const csp = [
+    const cspDirectives = [
       `default-src 'self'`,
       `script-src ${scriptSrc}`,
       `style-src ${styleSrc}`,
@@ -98,25 +98,36 @@ const nextConfig = {
       `frame-ancestors 'self'`,
       `base-uri 'self'`,
       `form-action 'self'`,
-      `upgrade-insecure-requests`, // Upgrade HTTP to HTTPS
-    ].join('; ')
+    ]
     
-    return [
+    // Only upgrade HTTP to HTTPS in production (breaks local dev on HTTP)
+    if (!isDev) {
+      cspDirectives.push(`upgrade-insecure-requests`)
+    }
+    
+    const csp = cspDirectives.join('; ')
+    
+    // Build headers array
+    const headers = [
       {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
+        key: 'X-DNS-Prefetch-Control',
+        value: 'on'
+      },
+    ]
+    
+    // HSTS only in production (not needed/appropriate for local dev)
+    if (!isDev) {
+      headers.push({
+        key: 'Strict-Transport-Security',
+        value: 'max-age=63072000; includeSubDomains; preload'
+      })
+    }
+    
+    headers.push(
+      {
+        key: 'X-Frame-Options',
+        value: 'SAMEORIGIN'
+      },
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
@@ -133,11 +144,16 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
           },
-          {
-            key: 'Content-Security-Policy',
-            value: csp
-          }
-        ],
+      {
+        key: 'Content-Security-Policy',
+        value: csp
+      }
+    )
+    
+    return [
+      {
+        source: '/:path*',
+        headers: headers,
       },
     ]
   },

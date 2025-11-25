@@ -193,9 +193,9 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;')
-          html += `<div class="bg-terminal-bg border border-terminal-border rounded p-4 my-6 overflow-x-auto">
+          html += `<div class="bg-terminal-bg border border-terminal-border rounded p-4 my-6 overflow-x-auto code-block-wrapper">
             ${codeBlockLang ? `<div class="text-terminal-gray text-sm mb-2"><span class="text-terminal-green">$</span> ${escapedLang}</div>` : ''}
-            <pre class="text-terminal-green text-sm"><code>${escapedCode.trim()}</code></pre>
+            <pre class="text-terminal-green text-sm code-block-pre"><code class="code-block-code">${escapedCode.trim()}</code></pre>
           </div>`
           codeBlockContent = ''
         }
@@ -442,7 +442,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <Header />
       <main>
         <section className="py-8 bg-terminal-bg min-h-screen">
-          <div className="container mx-auto px-6 max-w-4xl">
+          <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
             {/* Breadcrumb */}
             <div className="mb-6">
               <div className="text-terminal-gray text-sm flex items-center space-x-2">
@@ -459,7 +459,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             </div>
 
             {/* Article */}
-            <article className="bg-terminal-surface border border-terminal-border p-8">
+            <article className="bg-terminal-surface border border-terminal-border p-4 sm:p-6 md:p-8">
               {/* Article Header */}
               <div className="mb-8 pb-6 border-b border-terminal-border">
                 <div className="flex items-center justify-between mb-4">
