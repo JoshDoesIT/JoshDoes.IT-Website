@@ -6,8 +6,6 @@ tags: ['AI', 'Machine Learning', 'Compliance', 'Automation']
 icon: 'fa-file-code'
 ---
 
-# Building an AI-Powered Control Mapper: From Concept to Production
-
 Mapping security controls between compliance frameworks has always been one of those tedious, time-consuming tasks that security professionals dread. When you're working with frameworks like PCI DSS, SOC 2, NIST CSF, or SCF, manually mapping hundreds of controls can take weeks or even months. But what if we could teach a machine to understand the semantic meaning of controls and automatically find the best matches? That's exactly what I set out to build.
 
 ## The Problem: Manual Control Mapping

@@ -6,8 +6,6 @@ tags: ['MCP', 'LLM', 'Network Security', 'Automation', 'AWS']
 icon: 'fa-shield-alt'
 ---
 
-# Talking to Network Security Controls: Using MCP and LLMs for Automated Reviews
-
 Reviewing network security controls like AWS Security Groups and Network ACLs is a critical but time consuming task. Most organizations use specialized tools like Nipper, FireMon, AlgoSec, etc. to automate these reviews. These tools are powerful, but they typically require you to configure specific queries, filters, and rule sets for each type of check you want to perform. But what if you could just ask an AI to review your network security controls in plain English? What if you could say "show me all the rules that allow SSH from the internet" or "are production and development networks properly segmented?" and get intelligent, accurate answers?
 
 That's exactly what I set out to test. I'll be honest, I was skeptical. But the results surprised me in the best way possible.
