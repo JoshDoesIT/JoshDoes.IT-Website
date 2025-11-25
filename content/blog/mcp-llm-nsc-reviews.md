@@ -16,7 +16,7 @@ That's exactly what I set out to test. I'll be honest, I was skeptical. But the 
 
 Network Security Controls (NSCs) are the rules and policies that govern network traffic flow. In AWS, this includes Security Groups (stateful, instance-level firewalls) and Network ACLs (stateless, subnet-level firewalls). 
 
-Most security teams use specialized tools for these reviews—tools like Tufin, Nipper, FireMon, AlgoSec, and others. These tools are excellent at what they do: they can parse configurations, identify common security issues, and generate compliance reports. But they have limitations:
+Most security teams use specialized tools for these reviews. Tools like Tufin, Nipper, FireMon, AlgoSec, and others are popular. These tools are excellent at what they do: they can parse configurations, identify common security issues, and generate compliance reports. But they have limitations:
 
 1. **Configuration overhead**: You need to set up specific queries, filters, and rule sets for each type of check
 2. **Query complexity**: Finding complex issues often requires writing custom queries or configuring advanced filtering logic
@@ -119,7 +119,7 @@ External Request
 EC2 Instance
 ```
 
-This level of analysis and understanding how different security layers interact, identifying the specific rules causing violations, and explaining the security implications is exactly what you'd want from a security review.
+This level of analysis and understanding how different security layers interact, identifying the specific rules causing violations, and explaining the security implications is exactly what you'd want from a security review. Nice!
 
 ### Example 3: Overly Permissive CIDR Blocks
 
@@ -186,7 +186,7 @@ While this implementation uses AWS Security Groups and Network ACLs as examples,
 - **Azure Network Security Groups (NSGs)**
 - **Google Cloud Platform Firewall Rules**
 - **Oracle Cloud Infrastructure Security Lists**
-- **Traditional on-premises firewalls** (Palo Alto, Check Point, Fortinet, Cisco)
+- **Traditional on-premises firewalls** (e.g., Palo Alto, Check Point, Fortinet, Cisco)
 
 The pattern is the same: create a parser for the NSC type, add MCP tools to query it, and the LLM can analyze it using natural language.
 
