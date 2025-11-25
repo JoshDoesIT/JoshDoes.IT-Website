@@ -205,15 +205,21 @@ The MCP server is built in Python and uses the MCP SDK. It implements the MCP pr
 
 ### How Queries Are Processed
 
-When you ask the LLM a question:
+When you ask the LLM a question, here's the complete flow:
 
-1. **LLM analyzes the query** and determines which MCP tools to use
-2. **LLM calls the tools** (e.g., `get_config` to fetch Security Groups)
-3. **MCP server fetches data** from AWS and returns structured JSON
-4. **LLM receives the data** and analyzes it in context
-5. **LLM provides analysis** with findings, risk assessments, and recommendations
+1. **Submit Query**: You submit a natural language query like "Show me all Security Groups that allow SSH from the internet"
 
-![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/og-image.png)
+2. **LLM Analyzes and Makes Tool Calls**: The LLM analyzes the query, identifies intent, detects security keywords (e.g., "SSH", "0.0.0.0/0", "security groups"), and formulates a plan. It then makes tool calls to the MCP server (e.g., `get_config()` and `query_rules()`)
+
+3. **MCP Server Fetches Data**: The MCP server receives the tool calls, executes them, and routes requests to AWS. It makes API calls to EC2 and VPC services to fetch Security Group rules and Network ACLs, filtering for the specific criteria (e.g., SSH on port 22, source 0.0.0.0/0)
+
+4. **AWS Returns Raw Data**: AWS Cloud Infrastructure returns raw JSON data containing the matching security group rules and configurations
+
+5. **MCP Server Returns Structured Data**: The MCP server processes the raw JSON data and returns structured, processed data back to the LLM
+
+6. **LLM Generates Response**: The LLM receives the structured data, analyzes it in context, and generates a formatted security analysis with findings, severity ratings, and actionable recommendations
+
+![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/NSC-Reviews-with-MCP-and-LLMs.png)
 
 *Flow diagram showing how a natural language query is processed through the LLM and MCP server to produce security analysis.*
 
