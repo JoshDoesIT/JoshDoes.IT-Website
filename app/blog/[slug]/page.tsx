@@ -448,11 +448,11 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 <Link href="/" className="hover:text-terminal-green transition-colors">
                   josh@joshdoes.it:~$
                 </Link>
-                <i className="fa-solid fa-chevron-right text-xs"></i>
+                <span className="text-terminal-gray">/</span>
                 <Link href="/blog" className="hover:text-terminal-green transition-colors">
                   blog
                 </Link>
-                <i className="fa-solid fa-chevron-right text-xs"></i>
+                <span className="text-terminal-gray">/</span>
                 <span className="text-terminal-green">{post.slug}.md</span>
               </div>
             </div>

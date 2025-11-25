@@ -20,7 +20,7 @@ export default function AccessibilityPage() {
                 <Link href="/" className="hover:text-terminal-green transition-colors">
                   josh@joshdoes.it:~$
                 </Link>
-                <i className="fa-solid fa-chevron-right text-xs"></i>
+                <span className="text-terminal-gray">/</span>
                 <span className="text-terminal-green">accessibility-statement.md</span>
               </div>
             </div>
