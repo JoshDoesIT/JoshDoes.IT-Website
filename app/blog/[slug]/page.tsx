@@ -73,6 +73,7 @@ function getIconElement(iconClass: string) {
   const iconMap: Record<string, string> = {
     'fa-file-code': 'fa-solid fa-file-code',
     'fa-shield': 'fa-solid fa-shield',
+    'fa-shield-alt': 'fa-solid fa-shield-halved',
     'fa-bug': 'fa-solid fa-bug',
     'fa-gavel': 'fa-solid fa-gavel',
     'fa-code-branch': 'fa-solid fa-code-branch',
