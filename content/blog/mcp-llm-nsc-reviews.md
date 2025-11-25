@@ -57,7 +57,6 @@ I asked the LLM to review all Security Groups and Network ACLs in my test enviro
 **Critical Issue #1: Public SSH Access to Database Server**
 
 The LLM identified that a Development Database Security Group had SSH (port 22) open to the entire internet (0.0.0.0/0). But it didn't just flag it, it provided context:
-
 ```
 Affected Resource: sg-0e3ae3e6560ba3262 (Dev-Database-SG)
 VPC: vpc-0627541bf1d62805c (Development)
@@ -88,7 +87,6 @@ Here's what it found:
 **Critical Finding: Network Segmentation Violations**
 
 The LLM identified that both Network ACL layers contained rules allowing unrestricted cross-environment communication:
-
 ```
 Production-NACL Rule 150:
 - Protocol: ALL (-1)
@@ -109,7 +107,6 @@ Violation Analysis:
 ```
 
 But it went further. It explained the layered interaction:
-
 ```
 AWS network security operates on a defense-in-depth model with two primary layers:
 
@@ -129,7 +126,6 @@ This level of analysis and understanding how different security layers interact,
 The LLM also caught subtler issues. It identified that a Production Application Security Group allowed HTTPS from `10.0.0.0/8`, which includes the entire private IP range. While the intent was probably to allow access from the Production VPC (`10.0.0.0/16`), the `/8` CIDR block also includes the Development VPC (`10.1.0.0/16`), creating an unintended cross-environment access path.
 
 The LLM explained:
-
 ```
 Security Risk:
 - Impact: HIGH to CRITICAL - Permits access from unintended networks
