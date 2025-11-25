@@ -116,17 +116,17 @@ export default function BlogList({ posts }: BlogListProps) {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors cursor-pointer block"
+                className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors cursor-pointer block flex flex-col h-full"
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-terminal-gray text-xs">{post.date}</span>
                   <i className={`${getIconElement(post.icon)} text-terminal-green`}></i>
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-3">{post.title}</h3>
-                <p className="text-terminal-gray text-sm mb-4 leading-relaxed">
+                <p className="text-terminal-gray text-sm mb-4 leading-relaxed flex-grow">
                   {post.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4 mt-auto">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
