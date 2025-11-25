@@ -219,7 +219,7 @@ When you ask the LLM a question, here's the complete flow:
 
 6. **LLM Generates Response**: The LLM receives the structured data, analyzes it in context, and generates a formatted security analysis with findings, severity ratings, and actionable recommendations
 
-![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/NSC-Reviews-with-MCP-and-LLMs.png)
+![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/og-image.png)
 
 *Flow diagram showing how a natural language query is processed through the LLM and MCP server to produce security analysis.*
 
