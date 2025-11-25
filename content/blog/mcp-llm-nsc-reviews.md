@@ -8,7 +8,7 @@ icon: 'fa-shield-alt'
 
 # Talking to Network Security Controls: Using MCP and LLMs for Automated Reviews
 
-Reviewing network security controls like AWS Security Groups and Network ACLs is a critical but time-consuming task. Most organizations use specialized tools like Nipper, FireMon, AlgoSec, etc. to automate these reviews. These tools are powerful, but they typically require you to configure specific queries, filters, and rule sets for each type of check you want to perform. But what if you could just ask an AI to review your network security controls in plain English? What if you could say "show me all the rules that allow SSH from the internet" or "are production and development networks properly segmented?" and get intelligent, accurate answers?
+Reviewing network security controls like AWS Security Groups and Network ACLs is a critical but time consuming task. Most organizations use specialized tools like Nipper, FireMon, AlgoSec, etc. to automate these reviews. These tools are powerful, but they typically require you to configure specific queries, filters, and rule sets for each type of check you want to perform. But what if you could just ask an AI to review your network security controls in plain English? What if you could say "show me all the rules that allow SSH from the internet" or "are production and development networks properly segmented?" and get intelligent, accurate answers?
 
 That's exactly what I set out to test. I'll be honest, I was skeptical. But the results surprised me in the best way possible.
 
@@ -37,7 +37,7 @@ I wanted to test if this could work as an alternative or complement to tradition
 3. **LLM analyzes** the configurations using natural language understanding
 4. **LLM provides** security analysis, findings, and recommendations
 
-I built a proof-of-concept MCP server that could:
+I built a proof of concept MCP server that could:
 - List VPCs in an AWS account
 - Fetch Security Group and Network ACL configurations
 - Query rules by various criteria (source, destination, port, protocol)
@@ -165,7 +165,7 @@ Queries NSC rules by various criteria:
 - Direction (ingress/egress)
 - Or get all rules with no parameters
 
-The MCP server is read-only. It only fetches configurations, never modifies them.
+The MCP server is read only. It only fetches configurations, never modifies them.
 
 ### Natural Language Querying
 
@@ -305,6 +305,6 @@ The lab is designed to be educational. You can experiment with different queries
 
 ## Conclusion
 
-The combination of MCP and LLMs creates a powerful tool for security reviews, offering something different compared to the normal NSC review tools: the ability to explore configurations conversationally, ask ad-hoc questions, and get contextual analysis in natural language. The real value isn't just automation, it's the ability to ask questions in natural language and get intelligent, contextual answers. Instead of configuring specific queries or filters for each type of check, you can just ask "what are the security risks?" and get a comprehensive analysis.
+The combination of MCP and LLMs creates a powerful tool for security reviews, offering something different compared to the normal NSC review tools: the ability to explore configurations conversationally, ask ad hoc questions, and get contextual analysis in natural language. The real value isn't just automation, it's the ability to ask questions in natural language and get intelligent, contextual answers. Instead of configuring specific queries or filters for each type of check, you can just ask "what are the security risks?" and get a comprehensive analysis.
 
 If you're working on network security reviews, compliance assessments, or just curious about how MCP and LLMs can work together, I encourage you to check out the lab. And if you try it, let me know what you think. I'd love to hear about your experiences.
