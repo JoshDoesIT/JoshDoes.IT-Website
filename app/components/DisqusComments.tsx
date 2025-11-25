@@ -60,50 +60,50 @@ export default function DisqusComments({ post }: DisqusCommentsProps) {
       }
 
       const pageUrl = window.location.href
-      const pageIdentifier = post.slug
-      const pageTitle = post.title
+    const pageIdentifier = post.slug
+    const pageTitle = post.title
 
-      // Disqus configuration
-      window.disqus_config = function (this: DisqusConfig) {
-        this.page.url = pageUrl
-        this.page.identifier = pageIdentifier
-        this.page.title = pageTitle
-      } as DisqusConfigFunction
+    // Disqus configuration
+    window.disqus_config = function (this: DisqusConfig) {
+      this.page.url = pageUrl
+      this.page.identifier = pageIdentifier
+      this.page.title = pageTitle
+    } as DisqusConfigFunction
 
-      // Load Disqus script if not already loaded
+    // Load Disqus script if not already loaded
       if (!disqusScriptLoaded) {
-        // Check if script already exists
-        const existingScript = document.querySelector(`script[src*="disqus.com/embed.js"]`)
-        
-        if (!existingScript) {
-          const script = document.createElement('script')
-          script.src = `https://${DISQUS_SHORTNAME}.disqus.com/embed.js`
-          script.setAttribute('data-timestamp', Date.now().toString())
-          script.async = true
-          script.setAttribute('data-disqus-script', 'true')
+      // Check if script already exists
+      const existingScript = document.querySelector(`script[src*="disqus.com/embed.js"]`)
+      
+      if (!existingScript) {
+        const script = document.createElement('script')
+        script.src = `https://${DISQUS_SHORTNAME}.disqus.com/embed.js`
+        script.setAttribute('data-timestamp', Date.now().toString())
+        script.async = true
+        script.setAttribute('data-disqus-script', 'true')
 
-          script.onerror = () => {
-            console.error('Failed to load Disqus script')
-            disqusScriptLoaded = false
-          }
-
-          document.head.appendChild(script)
-          disqusScriptLoaded = true
-        } else {
-          // Script exists, reset Disqus
-          if (window.DISQUS) {
-            window.DISQUS.reset({
-              reload: true,
-              config: window.disqus_config,
-            })
-          }
+        script.onerror = () => {
+          console.error('Failed to load Disqus script')
+          disqusScriptLoaded = false
         }
-      } else if (window.DISQUS) {
-        // Script already loaded, just reset
-        window.DISQUS.reset({
-          reload: true,
-          config: window.disqus_config,
-        })
+
+        document.head.appendChild(script)
+        disqusScriptLoaded = true
+      } else {
+        // Script exists, reset Disqus
+        if (window.DISQUS) {
+          window.DISQUS.reset({
+            reload: true,
+            config: window.disqus_config,
+          })
+        }
+      }
+    } else if (window.DISQUS) {
+      // Script already loaded, just reset
+      window.DISQUS.reset({
+        reload: true,
+        config: window.disqus_config,
+      })
       }
     }
 
