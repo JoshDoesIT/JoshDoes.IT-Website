@@ -138,7 +138,7 @@ Again, it didn't just flag the issue, it understood the broader implications and
 
 ## How It Works: MCP Server Architecture
 
-![NSC Reviews with MCP and LLMs Architecture](/blog_post_images/mcp-llm-nsc-reviews/og-image.png)
+![NSC Reviews with MCP and LLMs Architecture](/blog_post_images/mcp-llm-nsc-reviews/NSC-Reviews-with-MCP-and-LLMs.png)
 
 *Architecture diagram showing how MCP servers enable LLMs to query and analyze Network Security Controls using natural language.*
 
@@ -213,7 +213,7 @@ When you ask the LLM a question:
 4. **LLM receives the data** and analyzes it in context
 5. **LLM provides analysis** with findings, risk assessments, and recommendations
 
-![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/NSC-Reviews-with-MCP-and-LLMs.png)
+![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/og-image.png)
 
 *Flow diagram showing how a natural language query is processed through the LLM and MCP server to produce security analysis.*
 
