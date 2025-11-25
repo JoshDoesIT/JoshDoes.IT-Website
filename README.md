@@ -90,6 +90,10 @@ This is my personal website where I share my experience, projects, and blog post
 - **`public/blog_post_images/`** - Images used in blog posts
   - Images are organized in folders by blog post name
   - Referenced in markdown like: `![alt text](/blog_post_images/post-name/image.png)`
+  - **Open Graph Images**: To set a custom social media preview image for a specific blog post:
+    - Create a folder: `public/blog_post_images/{post-slug}/`
+    - Place an image named `og-image.png` in that folder (recommended size: 1200x630px)
+    - If no post-specific `og-image.png` exists, the site defaults to `/og-image.png` in the public folder
 
 ## Blog Posts
 

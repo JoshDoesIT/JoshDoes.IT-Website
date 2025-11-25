@@ -138,6 +138,10 @@ Again, it didn't just flag the issue, it understood the broader implications and
 
 ## How It Works: MCP Server Architecture
 
+![NSC Reviews with MCP and LLMs Architecture](/blog_post_images/mcp-llm-nsc-reviews/og-image.png)
+
+*Architecture diagram showing how MCP servers enable LLMs to query and analyze Network Security Controls using natural language.*
+
 The MCP server I built provides three main tools for querying network security controls:
 
 ### 1. `list_vpcs`
