@@ -213,6 +213,10 @@ When you ask the LLM a question:
 4. **LLM receives the data** and analyzes it in context
 5. **LLM provides analysis** with findings, risk assessments, and recommendations
 
+![Query Processing Flow](/blog_post_images/mcp-llm-nsc-reviews/LLM-MCP-NSC-Query-Processing-Flow.jpg)
+
+*Flow diagram showing how a natural language query is processed through the LLM and MCP server to produce security analysis.*
+
 ### Terraform Test Environment
 
 To test this properly, I created a Terraform configuration that provisions:
