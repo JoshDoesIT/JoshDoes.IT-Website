@@ -1,7 +1,5 @@
 # joshdoes.it
 
-My personal portfolio and blog website.
-
 🌐 **Live Site**: [joshdoes.it](https://joshdoes.it)
 
 ## About
