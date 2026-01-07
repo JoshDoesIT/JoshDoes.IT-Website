@@ -1,6 +1,6 @@
 # joshdoes.it
 
-My personal portfolio and blog website built with Next.js and TypeScript, featuring a terminal-inspired design.
+My personal portfolio and blog website.
 
 🌐 **Live Site**: [joshdoes.it](https://joshdoes.it)
 
@@ -83,7 +83,7 @@ This is my personal website where I share my experience, projects, and blog post
   - `page.tsx` - Renders the blog listing page at `/blog`
   - `posts.ts` - Server-side code that reads markdown files from `content/blog/`
 
-- **`content/blog/`** - Where I write my blog posts as Markdown files
+- **`content/blog/`** - Where blog posts are stored
   - Each `.md` file becomes a blog post
   - Frontmatter (title, date, tags, etc.) is parsed from the file header
 
@@ -106,7 +106,7 @@ icon: 'fa-file-code'
 
 # Post Content
 
-My markdown content here...
+Markdown content here...
 ```
 
 ## Deployment
