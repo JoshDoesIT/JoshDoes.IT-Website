@@ -68,7 +68,7 @@ This is my personal website where I share my experience, projects, and blog post
 │   ├── layout.tsx           # Root layout component
 │   └── page.tsx             # Home page
 ├── content/
-│   └── blog/                # Blog post content (Markdown files)
+│   └── blog/                # Blog post content
 │       └── *.md             # Individual blog posts as markdown files
 ├── public/
 │   └── blog_post_images/    # Static images referenced in blog posts
@@ -83,17 +83,13 @@ This is my personal website where I share my experience, projects, and blog post
   - `page.tsx` - Renders the blog listing page at `/blog`
   - `posts.ts` - Server-side code that reads markdown files from `content/blog/`
 
-- **`content/blog/`** - Where you write your blog posts as Markdown files
+- **`content/blog/`** - Where I write my blog posts as Markdown files
   - Each `.md` file becomes a blog post
   - Frontmatter (title, date, tags, etc.) is parsed from the file header
 
 - **`public/blog_post_images/`** - Images used in blog posts
   - Images are organized in folders by blog post name
   - Referenced in markdown like: `![alt text](/blog_post_images/post-name/image.png)`
-  - **Open Graph Images**: To set a custom social media preview image for a specific blog post:
-    - Create a folder: `public/blog_post_images/{post-slug}/`
-    - Place an image named `og-image.png` in that folder (recommended size: 1200x630px)
-    - If no post-specific `og-image.png` exists, the site defaults to `/og-image.png` in the public folder
 
 ## Blog Posts
 
@@ -110,7 +106,7 @@ icon: 'fa-file-code'
 
 # Post Content
 
-Your markdown content here...
+My markdown content here...
 ```
 
 ## Deployment
