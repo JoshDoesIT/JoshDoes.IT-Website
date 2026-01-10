@@ -66,6 +66,10 @@ test.describe('Disqus Comments Integration', () => {
             // Ignore 400/403 errors from external resources (Disqus, Google, etc.)
             if (msg.includes('status of 400') || msg.includes('status of 403')) return false
 
+            // Ignore "Report Only" CSP violations - these don't break the page
+            // This happens inside Google's own iframes (e.g. accounts.google.com)
+            if (msg.includes('Report Only') || msg.includes('Report-Only')) return false
+
             return true
         })
 
