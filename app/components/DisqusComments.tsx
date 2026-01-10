@@ -38,14 +38,17 @@ export default function DisqusComments({ post }: DisqusCommentsProps) {
     // Get Disqus shortname from environment variable
     // Note: The shortname is NOT secret - it's a public identifier
     const DISQUS_SHORTNAME = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME || 'josh-does-it'
-    
+
     // Skip if shortname not configured (only if it's still the placeholder)
     if (!DISQUS_SHORTNAME || DISQUS_SHORTNAME === 'YOUR_DISQUS_SHORTNAME') {
       console.warn('Disqus shortname not configured. Please set NEXT_PUBLIC_DISQUS_SHORTNAME environment variable')
       return
     }
 
-    // Ensure we're in the browser
+    // Ensure we're in the browser (SSR guard)
+    // Note: This branch cannot be covered in jsdom unit tests since jsdom always
+    // provides a window object. This code path is exercised during SSR in production.
+    /* c8 ignore next 3 */
     if (typeof window === 'undefined') {
       return
     }
@@ -60,50 +63,50 @@ export default function DisqusComments({ post }: DisqusCommentsProps) {
       }
 
       const pageUrl = window.location.href
-    const pageIdentifier = post.slug
-    const pageTitle = post.title
+      const pageIdentifier = post.slug
+      const pageTitle = post.title
 
-    // Disqus configuration
-    window.disqus_config = function (this: DisqusConfig) {
-      this.page.url = pageUrl
-      this.page.identifier = pageIdentifier
-      this.page.title = pageTitle
-    } as DisqusConfigFunction
+      // Disqus configuration
+      window.disqus_config = function (this: DisqusConfig) {
+        this.page.url = pageUrl
+        this.page.identifier = pageIdentifier
+        this.page.title = pageTitle
+      } as DisqusConfigFunction
 
-    // Load Disqus script if not already loaded
+      // Load Disqus script if not already loaded
       if (!disqusScriptLoaded) {
-      // Check if script already exists
-      const existingScript = document.querySelector(`script[src*="disqus.com/embed.js"]`)
-      
-      if (!existingScript) {
-        const script = document.createElement('script')
-        script.src = `https://${DISQUS_SHORTNAME}.disqus.com/embed.js`
-        script.setAttribute('data-timestamp', Date.now().toString())
-        script.async = true
-        script.setAttribute('data-disqus-script', 'true')
+        // Check if script already exists
+        const existingScript = document.querySelector(`script[src*="disqus.com/embed.js"]`)
 
-        script.onerror = () => {
-          console.error('Failed to load Disqus script')
-          disqusScriptLoaded = false
-        }
+        if (!existingScript) {
+          const script = document.createElement('script')
+          script.src = `https://${DISQUS_SHORTNAME}.disqus.com/embed.js`
+          script.setAttribute('data-timestamp', Date.now().toString())
+          script.async = true
+          script.setAttribute('data-disqus-script', 'true')
 
-        document.head.appendChild(script)
-        disqusScriptLoaded = true
-      } else {
-        // Script exists, reset Disqus
-        if (window.DISQUS) {
-          window.DISQUS.reset({
-            reload: true,
-            config: window.disqus_config,
-          })
+          script.onerror = () => {
+            console.error('Failed to load Disqus script')
+            disqusScriptLoaded = false
+          }
+
+          document.head.appendChild(script)
+          disqusScriptLoaded = true
+        } else {
+          // Script exists, reset Disqus
+          if (window.DISQUS) {
+            window.DISQUS.reset({
+              reload: true,
+              config: window.disqus_config,
+            })
+          }
         }
-      }
-    } else if (window.DISQUS) {
-      // Script already loaded, just reset
-      window.DISQUS.reset({
-        reload: true,
-        config: window.disqus_config,
-      })
+      } else if (window.DISQUS) {
+        // Script already loaded, just reset
+        window.DISQUS.reset({
+          reload: true,
+          config: window.disqus_config,
+        })
       }
     }
 
@@ -127,8 +130,8 @@ export default function DisqusComments({ post }: DisqusCommentsProps) {
       <noscript>
         <p className="text-terminal-gray">
           Please enable JavaScript to view the{' '}
-          <a 
-            href="https://disqus.com/?ref_noscript" 
+          <a
+            href="https://disqus.com/?ref_noscript"
             className="text-terminal-green hover:text-white"
             target="_blank"
             rel="noopener noreferrer"

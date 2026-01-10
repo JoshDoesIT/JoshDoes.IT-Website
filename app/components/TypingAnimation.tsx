@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from 'react'
 
+// Exported constants for testing
+export const DEFAULT_SPEED = 100
+export const DEFAULT_ERASE_SPEED = 50
+export const DEFAULT_PAUSE_AFTER_TYPING = 4000
+export const DEFAULT_PAUSE_AFTER_ERASING = 500
+
 interface TypingAnimationProps {
   text: string
   speed?: number
@@ -11,13 +17,13 @@ interface TypingAnimationProps {
   className?: string
 }
 
-export default function TypingAnimation({ 
-  text, 
-  speed = 100, 
-  eraseSpeed = 50,
-  pauseAfterTyping = 4000,
-  pauseAfterErasing = 500,
-  className = '' 
+export default function TypingAnimation({
+  text,
+  speed = DEFAULT_SPEED,
+  eraseSpeed = DEFAULT_ERASE_SPEED,
+  pauseAfterTyping = DEFAULT_PAUSE_AFTER_TYPING,
+  pauseAfterErasing = DEFAULT_PAUSE_AFTER_ERASING,
+  className = ''
 }: TypingAnimationProps) {
   const [displayedText, setDisplayedText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
