@@ -54,7 +54,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-6">
                 <div className="bg-terminal-bg border border-terminal-border p-6">
-                  <div className="text-terminal-green mb-4">// Professional Summary</div>
+                  <div className="text-terminal-green mb-4">{'// Professional Summary'}</div>
                   <p className="text-terminal-gray leading-relaxed">
                     GRC engineering and security operations specialist skilled at turning compliance frameworks into
                     scalable controls, building audit-ready systems, and bridging regulatory and engineering worlds
@@ -64,7 +64,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="bg-terminal-bg border border-terminal-border p-6">
-                  <div className="text-terminal-green mb-4">// Certifications</div>
+                  <div className="text-terminal-green mb-4">{'// Certifications'}</div>
                   <ul className="space-y-2 text-terminal-gray">
                     <li><span className="text-terminal-green">&gt;</span> CISSP - Certified Information Systems Security Professional</li>
                     <li><span className="text-terminal-green">&gt;</span> CISA - Certified Information Systems Auditor</li>
@@ -78,7 +78,7 @@ export default function Home() {
               </div>
               <div className="space-y-6">
                 <div className="bg-terminal-bg border border-terminal-border p-6">
-                  <div className="text-terminal-green mb-4">// Contact Info</div>
+                  <div className="text-terminal-green mb-4">{'// Contact Info'}</div>
                   <div className="space-y-2 text-terminal-gray">
                     <div><span className="text-terminal-green">email:</span> <a href="mailto:contact@joshdoes.it" className="text-terminal-gray hover:text-terminal-green transition-colors underline">contact@joshdoes.it</a></div>
                     <div><span className="text-terminal-green">phone:</span> <a href="tel:+14239679970" className="text-terminal-gray hover:text-terminal-green transition-colors underline">423-967-9970</a></div>
@@ -87,7 +87,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="bg-terminal-bg border border-terminal-border p-6">
-                  <div className="text-terminal-green mb-4">// Education</div>
+                  <div className="text-terminal-green mb-4">{'// Education'}</div>
                   <div className="space-y-2 text-terminal-gray">
                     <div><span className="text-terminal-green">degree:</span> BS, IT - Information Assurance and Security</div>
                     <div><span className="text-terminal-green">school:</span> Capella University</div>

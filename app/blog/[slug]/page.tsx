@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Script from 'next/script'
+
 import fs from 'fs'
 import path from 'path'
 import { getAllPosts, getPostBySlug, type BlogPost } from '../posts'

@@ -6,7 +6,7 @@ test.describe('Blog Image Modal', () => {
         await page.goto('/');
 
         // Navigate to blog index
-        await page.locator('a[href="/blog"]').first().click();
+        await page.locator('#hero a[href="/blog"]').click();
         await expect(page).toHaveURL('/blog');
 
         // Search for the specific post to ensure it's visible (handling pagination)
