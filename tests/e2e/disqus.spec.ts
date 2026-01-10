@@ -61,9 +61,18 @@ test.describe('Disqus Comments Integration', () => {
         const disqusContainer = page.locator('#disqus_thread')
         await expect(disqusContainer).toBeVisible()
 
-        if (consoleErrors.length > 0) {
-            console.log('Console errors detected:', consoleErrors)
+        // Filter out known third-party noise that we can't control
+        const validErrors = consoleErrors.filter((msg) => {
+            // Ignore 400/403 errors from external resources (Disqus, Google, etc.)
+            if (msg.includes('status of 400') || msg.includes('status of 403')) return false
+
+            return true
+        })
+
+        if (validErrors.length > 0) {
+            console.log('Console errors detected:', validErrors)
         }
+        expect(validErrors).toHaveLength(0)
     })
 
     test('comments container should be inside terminal-styled wrapper', async ({ page }) => {
