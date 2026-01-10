@@ -4,6 +4,14 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import type { BlogPost } from './posts'
 
+// Exported constants for testing
+export const POSTS_PER_PAGE = 9
+export const MAX_SEARCH_LENGTH = 200
+
+// Note: This function duplicates getIconElement from utils.ts intentionally.
+// BlogList is a 'use client' component and cannot import from utils.ts because
+// utils.ts imports from posts.ts which uses 'fs' - a Node.js-only module.
+// This duplication is necessary due to Next.js client/server boundary.
 function getIconElement(iconClass: string) {
   // Return the full Font Awesome class
   const iconMap: Record<string, string> = {
@@ -17,7 +25,7 @@ function getIconElement(iconClass: string) {
     'fa-cloud-arrow-up': 'fa-solid fa-cloud-arrow-up',
     'fa-user-secret': 'fa-solid fa-user-secret',
   }
-  
+
   return iconMap[iconClass] || 'fa-solid fa-file-code'
 }
 
@@ -28,7 +36,7 @@ interface BlogListProps {
 export default function BlogList({ posts }: BlogListProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const postsPerPage = 9
+  const postsPerPage = POSTS_PER_PAGE
 
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
@@ -41,10 +49,6 @@ export default function BlogList({ posts }: BlogListProps) {
       .trim()
       .slice(0, 200) // Limit length to prevent potential DoS
       .toLowerCase()
-    
-    if (!sanitizedQuery) {
-      return posts
-    }
 
     try {
       // Use case-insensitive includes for safe matching (no regex, prevents ReDoS)
@@ -90,6 +94,7 @@ export default function BlogList({ posts }: BlogListProps) {
             maxLength={200}
             className="w-full bg-terminal-surface border border-terminal-border px-4 py-3 pl-10 text-terminal-gray focus:outline-none focus:border-terminal-green transition-colors"
             aria-label="Search blog posts"
+            data-testid="search-input"
           />
           <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-terminal-gray"></i>
           {searchQuery && (
@@ -97,6 +102,7 @@ export default function BlogList({ posts }: BlogListProps) {
               onClick={() => handleSearchChange('')}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-terminal-gray hover:text-terminal-green transition-colors"
               aria-label="Clear search"
+              data-testid="clear-search"
             >
               <i className="fa-solid fa-times"></i>
             </button>
@@ -117,6 +123,7 @@ export default function BlogList({ posts }: BlogListProps) {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
+                data-testid="blog-post"
                 className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors cursor-pointer block flex flex-col h-full"
               >
                 <div className="flex items-center justify-between mb-3">
@@ -153,11 +160,11 @@ export default function BlogList({ posts }: BlogListProps) {
               >
                 <i className="fa-solid fa-chevron-left"></i>
               </button>
-              
+
               <div className="text-terminal-gray text-sm">
                 Page {currentPage} of {totalPages}
               </div>
-              
+
               <button
                 onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
                 disabled={currentPage === totalPages}

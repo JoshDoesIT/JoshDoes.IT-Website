@@ -137,6 +137,23 @@ The site implements several security measures:
 - HTML entity escaping throughout the application
 - Content Security Policy (CSP) headers configured
 
+## Testing
+
+The project includes comprehensive testing with both unit tests and end-to-end tests:
+
+```bash
+# Run unit tests (Vitest)
+npm run test
+
+# Run E2E tests (Playwright)
+npm run test:e2e
+
+# Run unit tests with coverage
+npm run test -- --coverage
+```
+
+For detailed testing documentation, test structure, and writing guidelines, see the **[Test Suite Documentation](./tests/README.md)**.
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).

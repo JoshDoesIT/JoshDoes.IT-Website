@@ -4,7 +4,7 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Josh Jones - GRC Engineering & Security Automation Specialist',
-  description: 'josh@joshdoes.it:~$ whoami\n\nGRC Engineering & Security Automation Specialist. Operationalizing GRC programs through code, integrations, and workflow automation across enterprise environments.',
+  description: 'GRC Engineering & Security Automation Specialist. Building audit-ready systems through code, integrations, and workflow automation.',
   openGraph: {
     title: 'Josh Jones - View CV & Portfolio',
     description: 'https://joshdoes.it',

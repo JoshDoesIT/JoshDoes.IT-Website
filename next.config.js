@@ -12,10 +12,10 @@ const nextConfig = {
   },
   async headers() {
     const isDev = process.env.NODE_ENV === 'development'
-    
+
     // Content Security Policy configuration
     // Based on comprehensive review of all external resources used by the site
-    
+
     // Script sources: Next.js, Font Awesome, Disqus, Google Sign-In
     const scriptSrc = [
       "'self'",
@@ -36,7 +36,7 @@ const nextConfig = {
       'https://launchpad.privacymanager.io',
       'https://*.privacymanager.io',
     ].join(' ')
-    
+
     // Style sources: Self, inline styles, Google Fonts, Disqus
     const styleSrc = [
       "'self'",
@@ -46,13 +46,13 @@ const nextConfig = {
       'https://disqus.com',
       'https://*.disquscdn.com',
     ].join(' ')
-    
+
     // Font sources: Self, Google Fonts
     const fontSrc = [
       "'self'",
       'https://fonts.gstatic.com', // Google Fonts
     ].join(' ')
-    
+
     // Image sources: Self, data URIs, HTTPS/HTTP images (for blog posts), Disqus
     const imgSrc = [
       "'self'",
@@ -61,7 +61,7 @@ const nextConfig = {
       'http:', // For blog post images that may use HTTP
       'https://*.disquscdn.com',
     ].join(' ')
-    
+
     // Connect sources: API calls to Disqus, Google, etc.
     const connectSrc = [
       "'self'",
@@ -72,11 +72,13 @@ const nextConfig = {
       'https://accounts.google.com',
       'https://*.googleapis.com',
       'https://apis.google.com',
+      'https://*.gstatic.com',
+      'https://www.gstatic.com',
       'https://launchpad-wrapper.privacymanager.io',
       'https://launchpad.privacymanager.io',
       'https://*.privacymanager.io',
     ].join(' ')
-    
+
     // Frame sources: Disqus iframes, Google Sign-In iframes
     const frameSrc = [
       "'self'",
@@ -84,8 +86,10 @@ const nextConfig = {
       'https://disqus.com',
       'https://*.liadm.com',
       'https://accounts.google.com',
+      'https://*.gstatic.com',
+      'https://www.gstatic.com',
     ].join(' ')
-    
+
     // Build the complete CSP directive
     const cspDirectives = [
       `default-src 'self'`,
@@ -99,14 +103,14 @@ const nextConfig = {
       `base-uri 'self'`,
       `form-action 'self'`,
     ]
-    
+
     // Only upgrade HTTP to HTTPS in production (breaks local dev on HTTP)
     if (!isDev) {
       cspDirectives.push(`upgrade-insecure-requests`)
     }
-    
+
     const csp = cspDirectives.join('; ')
-    
+
     // Build headers array
     const headers = [
       {
@@ -114,7 +118,7 @@ const nextConfig = {
         value: 'on'
       },
     ]
-    
+
     // HSTS only in production (not needed/appropriate for local dev)
     if (!isDev) {
       headers.push({
@@ -122,34 +126,34 @@ const nextConfig = {
         value: 'max-age=63072000; includeSubDomains; preload'
       })
     }
-    
+
     headers.push(
       {
         key: 'X-Frame-Options',
         value: 'SAMEORIGIN'
       },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()'
-          },
+      {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff'
+      },
+      {
+        key: 'X-XSS-Protection',
+        value: '1; mode=block'
+      },
+      {
+        key: 'Referrer-Policy',
+        value: 'strict-origin-when-cross-origin'
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'camera=(), microphone=(), geolocation=()'
+      },
       {
         key: 'Content-Security-Policy',
         value: csp
       }
     )
-    
+
     return [
       {
         source: '/:path*',
