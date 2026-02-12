@@ -58,7 +58,7 @@ function createMockPost(
     title: string,
     date: string,
     tags: string[] = [],
-    slug?: string
+    _slug?: string
 ): string {
     return `---
 title: '${title}'

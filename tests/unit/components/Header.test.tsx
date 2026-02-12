@@ -14,7 +14,7 @@
  * - Menu items with proper roles
  */
 
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import Header from '@/app/components/Header'
 

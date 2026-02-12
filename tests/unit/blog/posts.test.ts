@@ -302,6 +302,7 @@ Just content, no frontmatter values`)
         it('should return undefined when resolved path escapes posts directory', () => {
             // Mock path module to simulate a resolved path that escapes the directory
             // This can happen with certain edge cases or symlinks
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
             const path = require('path')
             const originalResolve = path.resolve
 

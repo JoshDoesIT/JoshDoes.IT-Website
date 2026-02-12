@@ -74,7 +74,7 @@ describe('Blog Post Page', () => {
         // Let's rely on the fact that notFound is called
         try {
             await BlogPostPage({ params: Promise.resolve({ slug: 'non-existent' }) })
-        } catch (e) {
+        } catch (_e) {
             // unexpected error if notFound doesn't stop execution
         }
 

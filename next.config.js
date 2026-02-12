@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer: _isServer }) => {
     // Ignore optional dependencies in gray-matter that we don't use
     config.resolve.fallback = {
       ...config.resolve.fallback,
@@ -9,6 +9,12 @@ const nextConfig = {
       'toml': false,
     }
     return config
+  },
+  turbopack: {
+    resolveAlias: {
+      'coffee-script': '',
+      'toml': '',
+    },
   },
   async headers() {
     const isDev = process.env.NODE_ENV === 'development'

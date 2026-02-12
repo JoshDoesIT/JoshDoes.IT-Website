@@ -1,6 +1,6 @@
 declare module 'gray-matter' {
   interface MatterResult {
-    data: { [key: string]: any }
+    data: Record<string, unknown>
     content: string
     excerpt?: string
     orig: Buffer | string
@@ -12,12 +12,11 @@ declare module 'gray-matter' {
       delimiters?: string | string[]
       excerpt?: boolean | ((file: MatterResult) => string)
       excerpt_separator?: string
-      engines?: { [key: string]: (input: string) => any }
+      engines?: Record<string, (input: string) => unknown>
       language?: string
-      parser?: (input: string) => any
+      parser?: (input: string) => unknown
     }
   ): MatterResult
 
   export = matter
 }
-
