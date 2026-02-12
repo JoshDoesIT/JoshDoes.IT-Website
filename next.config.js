@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config, { isServer: _isServer }) => {
-    // Ignore optional dependencies in gray-matter that we don't use
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      'coffee-script': false,
-      'toml': false,
-    }
+  webpack: (config) => {
+    // Fully exclude optional gray-matter dependencies we don't use.
+    // IgnorePlugin prevents webpack from processing these modules entirely,
+    // avoiding "require.extensions is not supported" warnings.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const webpack = require('webpack')
+    config.plugins.push(
+      new webpack.IgnorePlugin({ resourceRegExp: /^coffee-script$/ }),
+      new webpack.IgnorePlugin({ resourceRegExp: /^toml$/ }),
+    )
     return config
   },
   turbopack: {
