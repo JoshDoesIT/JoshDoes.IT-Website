@@ -43,7 +43,9 @@ test.describe('Search Functionality - Edge Cases', () => {
     test('clear button should reset search', async ({ page }) => {
         const searchInput = await getSearchInput(page)
 
-        await searchInput.fill('test query')
+        // Use pressSequentially instead of fill() for WebKit React compat
+        await searchInput.click()
+        await searchInput.pressSequentially('test query', { delay: 30 })
         await expect(searchInput).toHaveValue('test query')
 
         // Use data-testid which is reliable across all browsers
@@ -131,11 +133,12 @@ test.describe('Search Functionality - Edge Cases', () => {
     test('no results state should display message or empty state', async ({ page }) => {
         const searchInput = await getSearchInput(page)
 
-        // Search for something that definitely won't exist
-        await searchInput.fill('xyznonexistentquerythatwontmatch12345')
-        await expect(searchInput).toHaveValue('xyznonexistentquerythatwontmatch12345')
+        // Use pressSequentially instead of fill() for WebKit React compat
+        await searchInput.click()
+        await searchInput.pressSequentially('zzzznotapost', { delay: 30 })
+        await expect(searchInput).toHaveValue('zzzznotapost')
 
-        // Wait for React to re-render - use longer timeout for WebKit
+        // Wait for React to re-render
         const noResults = page.locator('text=/no posts found/i, text=/no results/i')
         const posts = page.locator('[data-testid="blog-post"]')
 

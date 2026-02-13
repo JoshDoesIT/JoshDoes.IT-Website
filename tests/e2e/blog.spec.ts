@@ -108,11 +108,14 @@ test.describe('Blog Search', () => {
             return
         }
 
-        // Type a search query that should yield fewer results (or none)
-        await searchInput.fill('xyznonexistentquery123')
+        // Type a search query that should yield no results
+        // Use pressSequentially instead of fill() - WebKit doesn't fire React
+        // onChange from fill(), which sets the value programmatically without
+        // dispatching individual key events
+        await searchInput.click()
+        await searchInput.pressSequentially('zzzznotapost', { delay: 30 })
 
-        // Wait for the results to update - use longer timeout for WebKit
-        // React re-render after input change takes longer in WebKit
+        // Wait for React re-render to filter posts
         await expect(posts).toHaveCount(0, { timeout: 10000 })
     })
 })
