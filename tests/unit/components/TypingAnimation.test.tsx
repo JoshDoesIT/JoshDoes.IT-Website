@@ -23,9 +23,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, act } from '@testing-library/react'
 import TypingAnimation, {
     DEFAULT_SPEED,
-    DEFAULT_ERASE_SPEED,
-    DEFAULT_PAUSE_AFTER_TYPING,
-    DEFAULT_PAUSE_AFTER_ERASING,
 } from '@/app/components/TypingAnimation'
 
 describe('TypingAnimation Component', () => {

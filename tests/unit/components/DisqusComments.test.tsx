@@ -24,7 +24,7 @@ import { render, screen } from '@testing-library/react'
 import DisqusComments from '@/app/components/DisqusComments'
 
 describe('DisqusComments Component', () => {
-    const originalWindow = { ...window }
+    const _originalWindow = { ...window }
     const originalEnv = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME
 
     beforeEach(() => {

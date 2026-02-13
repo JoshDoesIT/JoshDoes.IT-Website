@@ -56,7 +56,7 @@ describe('Blog Post Page', () => {
         // Page component is async in Next.js 13+, for testing as a component we might need to await it
         // Or if it's a server component usage pattern. 
         // In simple unit testing of the function:
-        const jsx = await BlogPostPage({ params: { slug: 'test-post' } })
+        const jsx = await BlogPostPage({ params: Promise.resolve({ slug: 'test-post' }) })
         render(jsx)
 
         expect(screen.getByRole('heading', { name: 'Test Post' })).toBeInTheDocument()
@@ -73,8 +73,8 @@ describe('Blog Post Page', () => {
 
         // Let's rely on the fact that notFound is called
         try {
-            await BlogPostPage({ params: { slug: 'non-existent' } })
-        } catch (e) {
+            await BlogPostPage({ params: Promise.resolve({ slug: 'non-existent' }) })
+        } catch (_e) {
             // unexpected error if notFound doesn't stop execution
         }
 
@@ -114,7 +114,7 @@ describe('Blog Post Page', () => {
 
         vi.mocked(getRelatedPosts).mockReturnValue([])
 
-        const jsx = await BlogPostPage({ params: { slug: 'current-post' } })
+        const jsx = await BlogPostPage({ params: Promise.resolve({ slug: 'current-post' }) })
         render(jsx)
 
         expect(screen.getByText('Next Post →')).toBeInTheDocument()
@@ -143,7 +143,7 @@ describe('Blog Post Page', () => {
             }
         ])
 
-        const jsx = await BlogPostPage({ params: { slug: 'current-post' } })
+        const jsx = await BlogPostPage({ params: Promise.resolve({ slug: 'current-post' }) })
         render(jsx)
 
         expect(screen.getByText('Related Posts')).toBeInTheDocument()
@@ -178,7 +178,7 @@ describe('Blog Post Page Metadata & Static Params', () => {
             content: ''
         })
 
-        const metadata = await generateMetadata({ params: { slug: 'meta-post' } })
+        const metadata = await generateMetadata({ params: Promise.resolve({ slug: 'meta-post' }) })
 
         expect(metadata.title).toContain('Meta Post')
         expect(metadata.description).toBe('Meta Description')
@@ -199,7 +199,7 @@ describe('Blog Post Page Metadata & Static Params', () => {
         // Mock fs.existsSync to return true
         vi.mocked(fs.existsSync).mockReturnValue(true)
 
-        const metadata = await generateMetadata({ params: { slug: 'meta-post' } })
+        const metadata = await generateMetadata({ params: Promise.resolve({ slug: 'meta-post' }) })
 
         expect(metadata.openGraph?.images?.[0].url).toContain('/blog_post_images/meta-post/og-image.png')
     })
@@ -207,7 +207,7 @@ describe('Blog Post Page Metadata & Static Params', () => {
     it('generateMetadata should return "Post Not Found" if post is missing', async () => {
         vi.mocked(getPostBySlug).mockReturnValue(undefined)
 
-        const metadata = await generateMetadata({ params: { slug: 'missing' } })
+        const metadata = await generateMetadata({ params: Promise.resolve({ slug: 'missing' }) })
 
         expect(metadata.title).toBe('Post Not Found')
     })

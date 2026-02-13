@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 
 export default function ImageModal() {
     const [isOpen, setIsOpen] = useState(false);
@@ -78,12 +79,16 @@ export default function ImageModal() {
                 >
                     <i className="fa-solid fa-times"></i>
                 </button>
-                <img
-                    id="modalImage"
-                    src={imageSrc}
-                    alt={imageAlt}
-                    className="max-w-full max-h-full object-contain rounded border border-terminal-border"
-                />
+                <div className="relative w-full h-full">
+                    <Image
+                        id="modalImage"
+                        src={imageSrc}
+                        alt={imageAlt}
+                        fill
+                        className="object-contain rounded border border-terminal-border"
+                        unoptimized
+                    />
+                </div>
             </div>
         </div>
     );

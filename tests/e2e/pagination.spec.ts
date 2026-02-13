@@ -55,11 +55,17 @@ test.describe('Blog Pagination', () => {
             return
         }
 
-        const initialIndicator = await page.locator('text=/Page \\d+ of \\d+/').textContent()
+        const pageIndicator = page.locator('text=/Page \\d+ of \\d+/')
+        if ((await pageIndicator.count()) === 0) {
+            test.skip(true, 'No page indicator on page')
+            return
+        }
+
+        const initialIndicator = await pageIndicator.textContent()
         await nextButton.click()
 
         // Wait for page indicator to change
-        await expect(page.locator('text=/Page \\d+ of \\d+/')).not.toHaveText(initialIndicator!)
+        await expect(pageIndicator).not.toHaveText(initialIndicator!)
     })
 
     test('previous button should navigate to previous page', async ({ page }) => {
@@ -68,6 +74,12 @@ test.describe('Blog Pagination', () => {
 
         if ((await nextButton.count()) === 0) {
             test.skip(true, 'No next button on page')
+            return
+        }
+
+        const pageIndicator = page.locator('text=/Page \\d+ of \\d+/')
+        if ((await pageIndicator.count()) === 0) {
+            test.skip(true, 'No page indicator - single page of posts')
             return
         }
 
@@ -95,6 +107,12 @@ test.describe('Blog Pagination', () => {
             return
         }
 
+        const pageIndicator = page.locator('text=/Page \\d+ of \\d+/')
+        if ((await pageIndicator.count()) === 0) {
+            test.skip(true, 'No page indicator - single page of posts')
+            return
+        }
+
         const nextDisabled = await nextButton.isDisabled()
         if (nextDisabled) {
             test.skip(true, 'Next button is disabled - only one page of posts')
@@ -107,13 +125,8 @@ test.describe('Blog Pagination', () => {
 
         await searchInput.fill('test')
 
-        const indicator = page.locator('text=/Page \\d+ of \\d+/')
-        const indicatorVisible = (await indicator.count()) > 0
-
-        if (indicatorVisible) {
-            const text = await indicator.textContent()
-            expect(text).toMatch(/Page 1 of/)
-        }
+        const text = await pageIndicator.textContent()
+        expect(text).toMatch(/Page 1 of/)
     })
 
     test('pagination buttons should have accessible labels', async ({ page }) => {

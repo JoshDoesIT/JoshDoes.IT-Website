@@ -58,7 +58,7 @@ function createMockPost(
     title: string,
     date: string,
     tags: string[] = [],
-    slug?: string
+    _slug?: string
 ): string {
     return `---
 title: '${title}'
@@ -213,33 +213,31 @@ describe('Blog Utility Functions', () => {
     // =========================================================================
 
     describe('getNextPost', () => {
-        it('should return next (older) post', () => {
-            mockFs.existsSync.mockReturnValue(true)
-            mockFs.readdirSync.mockReturnValue([
-                'post1.md', 'post2.md', 'post3.md'
-            ] as unknown as ReturnType<typeof fs.readdirSync>)
-            mockFs.readFileSync
-                .mockReturnValueOnce(createMockPost('Post 1', '2025-03-01'))
-                .mockReturnValueOnce(createMockPost('Post 2', '2025-02-01'))
-                .mockReturnValueOnce(createMockPost('Post 3', '2025-01-01'))
+        it('should return next (older) post', async () => {
+            const posts = await import('@/app/blog/posts')
+            const spy = vi.spyOn(posts, 'getAllPosts').mockReturnValue([
+                { slug: 'post1', title: 'Post 1', date: '2025-03-01', description: '', tags: [], icon: '', content: '' },
+                { slug: 'post2', title: 'Post 2', date: '2025-02-01', description: '', tags: [], icon: '', content: '' },
+                { slug: 'post3', title: 'Post 3', date: '2025-01-01', description: '', tags: [], icon: '', content: '' },
+            ])
 
             // post1 is first (newest), next should be post2 (older)
             const next = getNextPost('post1')
             expect(next?.slug).toBe('post2')
+            spy.mockRestore()
         })
 
-        it('should return undefined for last post', () => {
-            mockFs.existsSync.mockReturnValue(true)
-            mockFs.readdirSync.mockReturnValue([
-                'post1.md', 'post2.md'
-            ] as unknown as ReturnType<typeof fs.readdirSync>)
-            mockFs.readFileSync
-                .mockReturnValueOnce(createMockPost('Post 1', '2025-02-01'))
-                .mockReturnValueOnce(createMockPost('Post 2', '2025-01-01'))
+        it('should return undefined for last post', async () => {
+            const posts = await import('@/app/blog/posts')
+            const spy = vi.spyOn(posts, 'getAllPosts').mockReturnValue([
+                { slug: 'post1', title: 'Post 1', date: '2025-02-01', description: '', tags: [], icon: '', content: '' },
+                { slug: 'post2', title: 'Post 2', date: '2025-01-01', description: '', tags: [], icon: '', content: '' },
+            ])
 
             // post2 is last (oldest), no next
             const next = getNextPost('post2')
             expect(next).toBeUndefined()
+            spy.mockRestore()
         })
     })
 
