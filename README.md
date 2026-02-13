@@ -1,6 +1,6 @@
 # joshdoes.it
 
-🌐 **Live Site**: [joshdoes.it](https://joshdoes.it)
+**Live Site**: [joshdoes.it](https://joshdoes.it)
 
 ## About
 
@@ -8,12 +8,12 @@ This is my personal website where I share my experience, projects, and blog post
 
 ## Features
 
-- **🖥️ Terminal-themed Design**: Dark theme with green accents inspired by command-line interfaces
-- **📝 Blog**: Markdown-based blog with search and pagination
-- **📄 Portfolio Sections**: About, Experience, Skills, Projects, and Contact information
-- **📱 Responsive Design**: Optimized for desktop and mobile devices
-- **⚡ Fast & Modern**: Built with Next.js 14 App Router for optimal performance
-- **🔒 Security**: Comprehensive security measures including XSS protection, path traversal prevention, and input validation
+- **Terminal-themed Design**: Dark theme with green accents inspired by command-line interfaces
+- **Blog**: Markdown-based blog with search and pagination
+- **Portfolio Sections**: About, Experience, Skills, Projects, and Contact information
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Fast and Modern**: Built with Next.js 14 App Router for optimal performance
+- **Security**: Comprehensive security measures including XSS protection, path traversal prevention, and input validation
 
 ## Tech Stack
 
@@ -136,6 +136,8 @@ The site implements several security measures:
 - Input validation and length limits on search functionality
 - HTML entity escaping throughout the application
 - Content Security Policy (CSP) headers configured
+
+For the full security policy, including how to report vulnerabilities, see **[SECURITY.md](SECURITY.md)**.
 
 ## Testing
 
