@@ -46,9 +46,9 @@ test.describe('Search Functionality - Edge Cases', () => {
         await searchInput.fill('test query')
         await expect(searchInput).toHaveValue('test query')
 
-        // Look for clear button - should be visible after typing
-        const clearButton = page.locator('button[aria-label*="clear" i], button:has(i.fa-times)')
-        await expect(clearButton, 'Clear button should appear after typing in search').toBeVisible()
+        // Use data-testid which is reliable across all browsers
+        const clearButton = page.getByTestId('clear-search')
+        await expect(clearButton, 'Clear button should appear after typing in search').toBeVisible({ timeout: 10000 })
         await clearButton.click()
 
         await expect(searchInput).toHaveValue('')
@@ -135,17 +135,15 @@ test.describe('Search Functionality - Edge Cases', () => {
         await searchInput.fill('xyznonexistentquerythatwontmatch12345')
         await expect(searchInput).toHaveValue('xyznonexistentquerythatwontmatch12345')
 
-        // Check for no results message OR empty state (no posts visible)
+        // Wait for React to re-render - use longer timeout for WebKit
         const noResults = page.locator('text=/no posts found/i, text=/no results/i')
         const posts = page.locator('[data-testid="blog-post"]')
 
-        const noResultsVisible = await noResults.count() > 0
-        const postCount = await posts.count()
-
-        // Either show a "no results" message OR ensure no posts are displayed
-        expect(
-            noResultsVisible || postCount === 0,
-            'Should either show no results message or display zero posts'
-        ).toBe(true)
+        // Wait for either "no results" message to appear OR all posts to disappear
+        await expect(async () => {
+            const noResultsVisible = await noResults.count() > 0
+            const postCount = await posts.count()
+            expect(noResultsVisible || postCount === 0).toBe(true)
+        }).toPass({ timeout: 10000 })
     })
 })

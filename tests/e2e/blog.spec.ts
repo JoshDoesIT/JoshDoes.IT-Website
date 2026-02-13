@@ -111,8 +111,8 @@ test.describe('Blog Search', () => {
         // Type a search query that should yield fewer results (or none)
         await searchInput.fill('xyznonexistentquery123')
 
-        // Wait for the results to update.
-        // Assuming it filters to 0:
-        await expect(posts).toHaveCount(0)
+        // Wait for the results to update - use longer timeout for WebKit
+        // React re-render after input change takes longer in WebKit
+        await expect(posts).toHaveCount(0, { timeout: 10000 })
     })
 })
