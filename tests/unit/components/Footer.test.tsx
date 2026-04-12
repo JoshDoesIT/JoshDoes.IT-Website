@@ -47,7 +47,7 @@ describe('Footer Component', () => {
     it('should display copyright text', () => {
         render(<Footer />)
 
-        expect(screen.getByText(/© 2025 Josh Jones/)).toBeInTheDocument()
+        expect(screen.getByText(/© 2026 Josh Jones/)).toBeInTheDocument()
         expect(screen.getByText(/All rights reserved/)).toBeInTheDocument()
     })
 
