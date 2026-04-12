@@ -81,7 +81,7 @@ export default function Home() {
                   <div className="text-terminal-green mb-4">{'// Contact Info'}</div>
                   <div className="space-y-2 text-terminal-gray">
                     <div><span className="text-terminal-green">email:</span> <a href="mailto:contact@joshdoes.it" className="text-terminal-gray hover:text-terminal-green transition-colors underline">contact@joshdoes.it</a></div>
-                    <div><span className="text-terminal-green">phone:</span> <a href="tel:+14239679970" className="text-terminal-gray hover:text-terminal-green transition-colors underline">423-967-9970</a></div>
+
                     <div><span className="text-terminal-green">location:</span> <a href="https://maps.google.com/?q=Johnson+City+TN" target="_blank" rel="noopener noreferrer" className="text-terminal-gray hover:text-terminal-green transition-colors underline">Johnson City, TN</a></div>
                     <div><span className="text-terminal-green">website:</span> <a href="https://joshdoes.it" className="text-terminal-gray hover:text-terminal-green transition-colors underline">joshdoes.it</a></div>
                   </div>
@@ -118,9 +118,10 @@ export default function Home() {
                 <ul className="space-y-2 text-terminal-gray">
                   <li><span className="text-terminal-green">&gt;</span> Built the enterprise Compliance Engineering function, automating continuous monitoring across Azure, M365, AWS, OCI, and on-premises environments</li>
                   <li><span className="text-terminal-green">&gt;</span> Reduced audit prep time for controls through automated audit evidence collection, saving engineering teams countless hours</li>
-                  <li><span className="text-terminal-green">&gt;</span> Used Copilot Studio to build a custom AI agent to match customer questionnaire questions to standard Q&A responses</li>
+                  <li><span className="text-terminal-green">&gt;</span> Built custom agentic AI review processes for control and policy/standard mapping, POAM drafting, evidence review, and questionnaire response drafting</li>
                   <li><span className="text-terminal-green">&gt;</span> Successfully completed over 25 external audits or assessments annually covering PCI DSS, PCI Secure Software Standard, HITRUST, SOC1, SOC2, SOC3, and partner audits</li>
-                  <li><span className="text-terminal-green">&gt;</span> Partnered with DevOps, Security, and Infrastructure teams to embed compliance into CI/CD pipelines</li>
+                  <li><span className="text-terminal-green">&gt;</span> Partnered with DevOps, Security, and Infrastructure teams to embed compliance into SDLC practices</li>
+                  <li><span className="text-terminal-green">&gt;</span> Performed control mapping to enable the development of a common control framework</li>
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
@@ -136,7 +137,7 @@ export default function Home() {
                   <li><span className="text-terminal-green">&gt;</span> Led internal Operational Readiness reviews for hundreds of projects and new products, partnering with product and engineering teams</li>
                   <li><span className="text-terminal-green">&gt;</span> Collaborated with PCI SSC's Special Interest Group (SIG) to help develop industry guidance "PCI DSS Scoping and Segmentation Guidance for Modern Network Architectures"</li>
                   <li><span className="text-terminal-green">&gt;</span> Participated in RFCs as a PCI SSC Participating Organization, helping to develop numerous PCI standards</li>
-                  <li><span className="text-terminal-green">&gt;</span> Implemented a GRC tool (Hyperproof and internally developed M365 stack) and created a common control set for the enterprise</li>
+
                 </ul>
               </div>
               <div className="bg-terminal-surface border border-terminal-border p-6">
@@ -231,6 +232,8 @@ export default function Home() {
                   <li>• PCI DSS, Secure Software Standard, Secure Software Lifecycle, Key Management Operations, Point-to-Point Encryption, PIN</li>
                   <li>• SOC 1, SOC 2, SOC 3</li>
                   <li>• HITRUST CSF</li>
+                  <li>• HIPAA</li>
+                  <li>• CMS Chapter 9 and 21</li>
                   <li>• ISO 42001</li>
                   <li>• CJIS</li>
                   <li>• More...</li>
@@ -245,7 +248,7 @@ export default function Home() {
                 </div>
                 <ul className="space-y-2 text-terminal-gray">
                   <li>• Wiz, ImPAC, Qualys, Snyk</li>
-                  <li>• ServiceNow, Jira</li>
+                  <li>• ServiceNow, Jira, Azure DevOps</li>
                   <li>• Copilot Studio</li>
                   <li>• Power Automate, Python, Bash, PowerShell</li>
                   <li>• Elastic Stack, Exabeam, CrowdStrike</li>
@@ -262,6 +265,7 @@ export default function Home() {
                 <ul className="space-y-2 text-terminal-gray">
                   <li>• AWS</li>
                   <li>• Azure</li>
+                  <li>• GCP</li>
                   <li>• OCI</li>
                 </ul>
               </div>
@@ -276,75 +280,74 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-white mb-6">Key Projects</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-terminal-surface border border-terminal-border p-6">
+              <a href="https://github.com/JoshDoesIT/ctrlmap" target="_blank" rel="noopener noreferrer" className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors block">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-white">Compliance Engineering Automation</h3>
+                  <h3 className="text-lg font-semibold text-white">ctrlmap - GRC Automation CLI</h3>
                   <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 640 512">
                     <path d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z" />
                   </svg>
                 </div>
                 <p className="text-terminal-gray mb-4">
-                  Built enterprise Compliance Engineering function automating continuous monitoring across Azure, M365,
-                  AWS, OCI, and on-premises environments. Reduced audit prep time for controls through automated audit evidence collection.
+                  GRC automation CLI that maps internal policies to security frameworks (NIST 800-53, PCI DSS, SOC 2, ISO 27001) using local AI. Layout-aware PDF parsing, built-in heuristics, and local LLM inference via Ollama. Zero data leaves your machine.
                 </p>
-                <div className="flex space-x-2">
+                <div className="flex flex-wrap gap-2">
                   <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Python</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Power Automate</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Wiz</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">ServiceNow</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">AI/ML</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">GRC</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Ollama</span>
                 </div>
-              </div>
-              <div className="bg-terminal-surface border border-terminal-border p-6">
+              </a>
+              <a href="https://github.com/JoshDoesIT/Sentinellium" target="_blank" rel="noopener noreferrer" className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors block">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-white">AI-Powered Questionnaire Automation</h3>
-                  <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 448 512">
-                    <path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+                  <h3 className="text-lg font-semibold text-white">Sentinellium - AI Defense Grid</h3>
+                  <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 512 512">
+                    <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z" />
                   </svg>
                 </div>
                 <p className="text-terminal-gray mb-4">
-                  Used Copilot Studio to build a custom AI agent that matches questions from customer questionnaires
-                  to answers from a curated list of standard Q&A responses, cutting review time by more than 80%.
+                  Client-side, privacy-preserving AI defense grid. WebGPU-accelerated browser extension for local AI security inference - detecting phishing, prompt injection, and malicious content without sending data to external servers.
                 </p>
-                <div className="flex space-x-2">
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Copilot Studio</span>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">TypeScript</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">WebGPU</span>
                   <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">AI/ML</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">M365</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Browser Extension</span>
                 </div>
-              </div>
-              <div className="bg-terminal-surface border border-terminal-border p-6">
+              </a>
+              <a href="https://github.com/JoshDoesIT/Network-Security-Control-Reviews-with-MCP-and-LLMs" target="_blank" rel="noopener noreferrer" className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors block">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-white">Enterprise GRC Platform</h3>
+                  <h3 className="text-lg font-semibold text-white">NSC Reviews with MCP &amp; LLMs</h3>
                   <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 576 512">
                     <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
                   </svg>
                 </div>
                 <p className="text-terminal-gray mb-4">
-                  Implemented a GRC tool (Hyperproof and internally developed M365 stack) and created a common control
-                  set for the enterprise.
+                  Educational lab demonstrating MCP servers with LLMs for automated network security control reviews and segmentation analysis using AWS Security Groups and Network ACLs as an example.
                 </p>
-                <div className="flex space-x-2">
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Hyperproof</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">M365</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">GRC</span>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Python</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">MCP</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">LLM</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">AWS</span>
                 </div>
-              </div>
-              <div className="bg-terminal-surface border border-terminal-border p-6">
+              </a>
+              <a href="https://github.com/JoshDoesIT/AI-Control-Mapper" target="_blank" rel="noopener noreferrer" className="bg-terminal-surface border border-terminal-border p-6 hover:border-terminal-green transition-colors block">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-white">PCI DSS Industry Standards and Guidance</h3>
+                  <h3 className="text-lg font-semibold text-white">AI Control Mapper - n8n Workflow</h3>
                   <svg className="w-6 h-6 text-terminal-green" fill="currentColor" viewBox="0 0 448 512">
                     <path d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3v87.8c18.8-10.9 40.7-17.1 64-17.1h96c35.3 0 64-28.7 64-64v-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V160c0 70.7-57.3 128-128 128H176c-35.3 0-64 28.7-64 64v6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V352 153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
                   </svg>
                 </div>
                 <p className="text-terminal-gray mb-4">
-                  Participated in numerous PCI SSC standard RFCs and collaborated with PCI SSC's Special Interest Group (SIG) to help develop and produce the industry
-                  guidance "PCI DSS Scoping and Segmentation Guidance for Modern Network Architectures".
+                  Intelligent n8n workflow that automatically maps security controls between compliance frameworks using AI-powered semantic similarity. Uses Google Gemini embeddings to find the best matches between source and target framework controls.
                 </p>
-                <div className="flex space-x-2">
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">PCI SSC</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Industry Standards</span>
-                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Technical Writing</span>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">n8n</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">Gemini</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">AI/ML</span>
+                  <span className="bg-terminal-bg px-2 py-1 text-xs border border-terminal-border">GRC</span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </section>
