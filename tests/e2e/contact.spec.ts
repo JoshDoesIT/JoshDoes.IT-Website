@@ -45,7 +45,7 @@ test.describe('Contact Section', () => {
     })
 
     test('should have GitHub link with security attributes', async ({ page }) => {
-        const githubLink = page.locator('a[href*="github.com"]')
+        const githubLink = page.locator('#contact a[href*="github.com"]')
         await expect(githubLink).toBeVisible()
 
         const target = await githubLink.getAttribute('target')
@@ -64,7 +64,7 @@ test.describe('Contact Section', () => {
     })
 
     test('GitHub link should have accessible label', async ({ page }) => {
-        const githubLink = page.locator('a[href*="github.com"]')
+        const githubLink = page.locator('#contact a[href*="github.com"]')
         const ariaLabel = await githubLink.getAttribute('aria-label')
 
         expect(ariaLabel).toBeTruthy()
