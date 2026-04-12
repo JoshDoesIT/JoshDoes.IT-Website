@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container mx-auto px-6 text-center">
         <div className="text-terminal-gray">
           <div className="mb-4">josh@joshdoes.it:~$ echo "Thanks for visiting!"</div>
-          <div className="mb-4">© 2025 Josh Jones. All rights reserved.</div>
+          <div className="mb-4">© 2026 Josh Jones. All rights reserved.</div>
           <div className="flex justify-center space-x-4 text-sm">
             <Link href="/privacy" className="text-terminal-gray hover:text-terminal-green transition-colors">
               ./privacy
